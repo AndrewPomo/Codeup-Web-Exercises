@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset-"utf-8">
+    <title>Andrew's Amazing Website</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700italic,700,400italic,300italic,300,800' rel='stylesheet' type='text/css'>
+    <style>
+        body    {
+            font-family:'Open Sans';
+            font-weight: 300;
+            font-size: 16px;
+            background-color:#D0D4CF;
+            background-image: url(img/new_year_background.png);
+
+        }
+        /*Ben used <header> tags around all of his <h> tags. Why not just use a class like I did below? Seems like fewer characters.*/
+        .header {
+            color:#076B3B; 
+            font-weight: 300;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        ul, ol  {
+            list-style-type: square;
+        }
+
+        table   {
+            text-align: center;
+            border: 1px solid;
+            margin:auto;
+        }
+
+        td      {
+            padding:5px 5px 5px 5px;
+            font-size: 20px;
+            border: 1px solid;
+        }
+
+        .sec_container{
+            background-color: rgba(255,255,255,0.65);
+            padding:15px;
+            margin:10px;
+            box-shadow: inset 0 0 0 4px #dedede;
+            position:relative;
+        }
+
+        a:visited, a:link   {
+            text-decoration:underline;
+            color:#3fa757;
+        }
+
+        a:hover     {
+            text-decoration:none;
+            color:#696B69;
+        }
+
+        .row_head   {
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        #top_link   {
+            padding: 12px 20px 12px 20px;
+            font-size: 14px;
+            font-weight:700;
+            text-transform: uppercase;
+            letter-spacing: 0.07rem;
+            display:block;
+            float:right;
+            width: auto;
+            background-color: rgba(255,255,255,.8);
+            height: 20px;
+            box-shadow: inset 0 0 0 4px #dedede;
+            margin:10px;
+            clear:both;
+        }
+
+        img     {
+            width:100%;
+        }
+        
+
+        .text       {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        #main_header{
+            color:#076B3B; 
+            font-weight: 800;
+            font-size: 4em;
+            text-align: center;
+        }
+
+        #col_left   {
+            position:absolute;
+            width:50%;
+            display: inline-block;
+        }
+
+        #col_right  {
+            width:50%;
+            float:right;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <a id="top"></a>
+
+    <h1 id="main_header">Hello, world!</h1>
+
+    
+
+    <div id="col_left">
+        <div class="sec_container">
+            <p class="text">
+                Hi! My name is Andrew, but most people call me Pomo. It's an abbreviation of my last name(s). This page is an incredibly random collection of facts about me.
+            </p>
+        </div>
+        
+        <div class="sec_container">
+            <h2 class="header">I'm Learning the LAMP Stack</h2>
+            <ul class="text">
+                <li>Linux</li>
+                <li>Apache</li>
+                <li>MySQL</li>
+                <li>PHP</li>
+            </ul>
+        </div>
+
+        <div class="sec_container">
+            <h2 class="header">My Top 5 Favorite Foods</h2>
+            <ol class="text">
+                <li>Wings</li>
+                <li>Burgers</li>
+                <li>Pasta</li>
+                <li>Reubens</li>
+                <li>Cheese</li>
+            </ol>
+        </div>
+
+        <div class="sec_container">
+            <h2 class="header">Questions I'm Often Asked</h2>
+            <dl class="text">
+                <dt>Are you high?</dt>
+                <dd>No.</dd>
+                <dt>Whats up?</dt>
+                <dd>Chillin'.</dd>
+            </dl>
+        </div>
+
+        <div class="sec_container">
+            <h2 class="header">My Favorite Websites</h2>
+            <ul class="text">
+                <li><a href="http://www.reddit.com" target="blank">Reddit: The Frontpage of the Internet</a></li>
+                <li><a href="http://deadspin.com/" target="blank">Deadspin: Sports News Without Access, Favor or Discretion</a></li>
+                <li><a href="http://fivethirtyeight.com/" target="blank">FiveThirtyEight: Hard Numbers, Compelling Stories</a></li>
+                <li><a href="http://allrecipes.com/" target="blank">Allrecipes: Food, Friends and Recipe Inspiration</a></li>
+                <li><a href="http://seatsmart.com/" target="blank">SeatSmart: Same Tickets. Lower Prices. Guaranteed</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="col_right">
+        <div class="sec_container">
+            <h2 class="header">My Favorite Quote</h2>
+            <blockquote >
+                "You put the wrong emph<em>a</em>sis on the wrong syll<em>a</em>ble."<br><em>-Mike Meyers</em>
+            </blockquote>
+        </div>
+        <div class="sec_container">
+            <h2 class="header">My Vehicle</h2>
+                <p class="text">
+                    I drive a white Ford Focus. I'm ready to not be driving it anymore. I don't have any pictures of mine, but it looks like the one below.
+                </p>
+
+            <img id="focus" src="img/My_Vehicle.jpg" alt="2008 Ford Focus" title="2008 Ford Focus">
+        </div>
+
+        <div class="sec_container">
+            <h2 class="header">Decimal to Hexadecimal Conversion Chart</h2>
+            <table>
+                <tr>
+                    <td class="row_head">Decimal</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td class="row_head">Hexadecimal</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="top_link">
+        <a href="#top">Back to top!</a>
+    </div>
+    
+</body>
+</html>

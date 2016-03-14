@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<!-- Build a page for TV listings. Have 30 minute blocks going across the top and channels going down the left hand side. Show at least three hours and 6 channels. Color code the shows by their type (comedy, drama, news, sports, etc.). Use (small) images and links for the station and show information.
+
+ -->
+<html>
+<head>
+    <title>Pomo's Amazing TV Guide</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/tv_listing.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Condiment' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="headbar">
+        <div id="logo">
+            <h1>Tele-Assist</h1>
+            <h3>Watch What You Want, When You Want!</h3>
+        </div>
+        <div id="login">
+            <p class="login_fields">
+                <i class="fa fa-user"></i> <input id="username" name="username" type="text" placeholder="Username">
+            </p>
+            <p class="login_fields">
+                <i class="fa fa-lock"></i><input id="password" name="password" type="password" placeholder="Password">
+            </p>
+            <button class="login_butt" type="submit">Login</button>
+            <button class="login_butt" type="link">Sign Up</button>
+        </div>
+    </div>
+    
+    <hr>
+
+    <div class="selector_container">
+        
+        <div class="description_box">
+            Tele-Asssist makes it easy to see what shows are coming up on your favorite channels. Pick your channels and give us a time frame below, and we'll build you a custom tv schedule! 
+        </div>
+
+        <p class="steps"><strong>Step One:</strong> Pick Your Channels</p>
+            
+            <p class="chan_select">
+                <label class="chan_box"><input type="checkbox" id="HBO" name="odd_even[]" value="1" checked>HBO</label>
+                <label class="chan_box"><input type="checkbox" id="Showtime" name="odd_even[]" value="1">Showtime</label>
+                <label class="chan_box"><input type="checkbox" id="Comedy_Central" name="odd_even[]" value="1">Comedy Central</label>
+                <label class="chan_box"><input type="checkbox" id="Food Network" name="odd_even[]" value="1" checked>Food Network</label>
+                <label class="chan_box"><input type="checkbox" id="FX" name="odd_even[]" value="1" checked>FX</label>
+                <label class="chan_box"><input type="checkbox" id="C-Span" name="odd_even[]" value="1" checked>C-SPAN</label>
+                <label class="chan_box"><input type="checkbox" id="ESPN" name="odd_even[]" value="1" checked>ESPN</label>
+                <label class="chan_box"><input type="checkbox" id="USA" name="odd_even[]" value="1">USA</label>
+                <label class="chan_box"><input type="checkbox" id="Animal Planet" name="odd_even[]" value="1" checked>Animal Planet</label>
+                <label class="chan_box"><input type="checkbox" id="FOX" name="odd_even[]" value="1">FOX</label>
+                <label class="chan_box"><input type="checkbox" id="ABC" name="odd_even[]" value="1">ABC</label>
+                <label class="chan_box"><input type="checkbox" id="AMC" name="odd_even[]" value="1">AMC</label>
+                <label class="chan_box"><input type="checkbox" id="MTV" name="odd_even[]" value="1"checked>MTV</label>
+            </p>
+
+        <p class="steps"><strong>Step Two:</strong> Select A Time Frame</p>
+        
+        <div class="time_select"><label class="time_sel">Start Time
+            <select id="select" name="drop_down">
+                <option value="1">Midnight</option>
+                <option value="0">1:00am</option>
+                <option value="1">2:00am</option>
+                <option value="0">3:00am</option>
+                <option value="1">4:00am</option>
+                <option value="0">5:00am</option>
+                <option value="1">6:00am</option>
+                <option value="0">7:00am</option>
+                <option value="1">8:00am</option>
+                <option value="0">9:00am</option>
+                <option value="1">10:00am</option>
+                <option value="0">11:00am</option>
+                <option value="1">Noon</option>
+                 <option value="0">1:00pm</option>
+                <option value="1">2:00pm</option>
+                <option value="0">3:00pm</option>
+                <option value="1">4:00pm</option>
+                <option value="0">5:00pm</option>
+                <option value="1">6:00pm</option>
+                <option value="0">7:00pm</option>
+                <option value="1">8:00pm</option>
+                <option value="0">9:00pm</option>
+                <option value="1">10:00pm</option>
+                <option value="0">11:00pm</option>
+            </select></label>
+        </div>
+
+        <div class="time_select"><label class="time_sel">End Time
+            <select id="select" name="drop_down">
+                <option value="1">Midnight</option>
+                <option value="0">1:00am</option>
+                <option value="1">2:00am</option>
+                <option value="0" selected>3:00am</option>
+                <option value="1">4:00am</option>
+                <option value="0">5:00am</option>
+                <option value="1">6:00am</option>
+                <option value="0">7:00am</option>
+                <option value="1">8:00am</option>
+                <option value="0">9:00am</option>
+                <option value="1">10:00am</option>
+                <option value="0">11:00am</option>
+                <option value="1">Noon</option>
+                 <option value="0">1:00pm</option>
+                <option value="1">2:00pm</option>
+                <option value="0">3:00pm</option>
+                <option value="1">4:00pm</option>
+                <option value="0">5:00pm</option>
+                <option value="1">6:00pm</option>
+                <option value="0">7:00pm</option>
+                <option value="1">8:00pm</option>
+                <option value="0">9:00pm</option>
+                <option value="1">10:00pm</option>
+                <option value="0">11:00pm</option>
+            </select></label>
+        </div>
+        <p class="steps"><strong>Step Three:</strong> Enter Your Email and Go!</p>
+             
+            <p class="email_field">
+                <input id="email" name="email" type="text" placeholder="Enter Your Email">
+            </p>
+
+            <button class="build_butt" type="submit">Build My Schedule!</button>
+
+    </div>
+
+    <hr>
+
+    <div class="key_container">
+                <i id="comedy"class="fa fa-square"></i> Comedy 
+                <i id="sports" class="fa fa-square"></i> Sports 
+                <i id="drama" class="fa fa-square"></i> Drama 
+                <i id="news" class="fa fa-square"></i> News 
+                <i id="movie" class="fa fa-square"></i> Movie
+    </div>
+        
+    <div class="schedule_container">
+        <div class="head_row">
+            <div class="col1">
+                <div class="head_row_text">Channel</div>
+            </div>
+            <div>
+                <div class="head_row_text">12:00 <sup>AM CT</sup></div>
+            </div>
+            <div>
+                <div class="head_row_text">12:30 <sup>AM CT</sup></div>
+            </div>
+            <div>
+                <div class="head_row_text">1:00 <sup>AM CT</sup></div>
+            </div>
+            <div>
+                <div class="head_row_text">1:30 <sup>AM CT</sup></div>
+            </div>
+            <div>
+                <div class="head_row_text">2:00 <sup>AM CT</sup></div>
+            </div>
+            <div>
+                <div class="head_row_text">2:30 <sup>AM CT</sup></div>
+            </div>
+            <div>
+                <div class="head_row_text">3:00 <sup>AM CT</sup></div>
+            </div>
+        </div>
+
+        <div class="reg_row">
+            <div class="col1">
+                <div class="col1_text">HBO</div>
+            </div>
+            <div class="hour drama">
+                <div class="reg_row_text">Game of Thrones</div>
+            </div>
+            <div class="hour news">
+                <div class="reg_row_text">Uneccessarily Crass with Bill Maher</div>
+            </div>
+            <div class="hf_hour news">
+                <div class="reg_row_text">Last Week Tonight with John Oliver</div>
+            </div>
+            <div class="hour movie">
+                <div class="reg_row_text">Evan Almighty >></div>
+            </div>
+        </div>
+
+        <div class="reg_row">
+            <div class="col1">
+                <div class="col1_text">Food Network</div>
+            </div>
+            <div class="hour">
+                <div class="reg_row_text">Two Tickets to Flavor Town: The Guy Fieri Experience</div>
+            </div>
+            <div class="hf_hour">
+                <div class="reg_row_text">My Barbecue Addiction</div>
+            </div>
+            <div class="hf_hour">
+                <div class="reg_row_text">Chopped</div>
+            </div>
+            <div class="hf_hour">
+                <div class="reg_row_text">Cupcake Wars</div>
+            </div>
+            <div class="hour">
+                <div class="reg_row_text">Iron Chef America</div>
+            </div>
+        </div>
+
+        <div class="reg_row">
+            <div class="col1">
+                <div class="col1_text">FX</div>
+            </div>
+            <div class="hf_hour comedy">
+                <div class="reg_row_text">Two And A Half Men</div>
+            </div>
+            <div class="two_hour movie">
+                <div class="reg_row_text">American Hustle</div>
+            </div>
+            <div class="hour drama">
+                <div class="reg_row_text">Cuba Gooding Jr. Looks Old AF</div>
+            </div>
+        </div>
+        <div class="reg_row">
+            <div class="col1">
+                <div class="col1_text">C-Span</div>
+            </div>
+            <div class="three_hour comedy">
+                <div class="reg_row_text">Politics</div>
+            </div>
+        </div>
+
+        <div class="reg_row">
+            <div class="col1">
+                <div class="col1_text">ESPN</div>
+            </div>
+            <div class="hf_hour news">
+                <div class="reg_row_text">SportsCenter</div>
+            </div>
+            <div class="hf_hour news">
+                <div class="reg_row_text">SportsCenter</div>
+            </div>
+            <div class="hf_hour news">
+                <div class="reg_row_text">Sports Center</div>
+            </div>
+            <div class="two_hour sports">
+                <div class="reg_row_text">NBA Finals: Spurs vs. Cavaliers >></div>
+            </div>
+        </div>
+
+        <div class="reg_row">
+            <div class="col1">
+                <div class="col1_text">Animal Planet</div>
+            </div>
+            <div class="two_hour movie">
+                <div class="reg_row_text">Panda Bears: Why Are They Here?</div>
+            </div>
+            <div class="hf_hour ">
+                <div class="reg_row_text">Sloths Sure Are Great</div>
+            </div>
+            <div class="hour movie">
+                <div class="reg_row_text">A Scanner Barkly >></div>
+            </div>
+        </div>
+
+        <div class="reg_row">
+            <div class="col1">
+                <div class="col1_text">MTV</div>
+            </div>
+            <div class="hf_hour comedy">
+                <div class="reg_row_text">ridiculousness</sup></div>
+            </div>
+            <div class="hf_hour comedy">
+                <div class="reg_row_text">ridiculousness</div>
+            </div>
+            <div class="two_hour">
+                <div class="reg_row_text">DREAM ON: An Intimate Evening With Steven Tyler</div>
+            </div>
+            <div class="hf_hour comedy">
+                <div class="reg_row_text">ridiculousness</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="donate_butt" type="submit">Donate!</button>
+</body>
+</html>
