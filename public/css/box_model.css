@@ -1,0 +1,49 @@
+div {
+    border: 1px solid black;
+    height: 50px;
+    width: 150px;
+    padding: 10px;
+    margin-top: 10px;
+    color: white;
+    font-weight: bold;
+}
+div:hover   {
+    border: 1px solid black;
+    height: 75px;
+    width: 225px;
+    padding: 15px;
+    margin-top: 10px;
+    color: white;
+    font-weight: bold;
+    font-size:1.5em;
+}
+
+#red    {
+    background-color: #D84231;
+    margin-top: 0px;
+}
+
+#orange {
+    background-color: #eaae33;
+    margin-left: 30px;
+}
+
+#yellow {
+    background-color: #fcf733;
+    margin-left: 60px;
+}
+
+#green  {
+    background-color: #578C05;
+    margin-left: 90px;
+}
+
+#blue   {
+    background-color: #234afb;
+    margin-left: 120px;
+}
+
+#violet {
+    background-color: #df8bf0;
+    margin-left: 150px;
+}
