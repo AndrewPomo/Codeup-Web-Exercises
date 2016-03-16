@@ -22,19 +22,11 @@ var favorite = 'blue'; // TODO: change this to your favorite color from the list
 // }
 
 // if (colors.indexOf('green') > -1){
-// 	console.log('Green is here. It the color of grass.')
+// 	console.log('Green is here. It is the color of grass.')
 // }
 
 // if (colors.indexOf('blue') > -1){
-// 	console.log('Blue is here. It the color of the best snow cone flavor.')
-// }
-
-// if (colors.indexOf('Indigo') > -1){
-// 	console.log('Indigo is here, but I don't know anything by that color.)
-// }
-
-// if (colors.indexOf('violet') > -1){
-// 	console.log('Violet is here, but I don't know anything by that color.')
+// 	console.log('Blue is here. It is the color of the best snow cone flavor.')
 // }
 
 if (color == 'red') {
@@ -46,14 +38,16 @@ if (color == 'red') {
 } else if (color == 'green') {
 	console.log('This is green - the color of limes.')
 } else if (color == 'blue') {
-	console.log('This is blue - the color of coconu...wait...')
+	console.log('This is blue - the color of the objectively best snow cone flavor.')
 } else {
 	console.log('This is either indigo or violet (Can you tell them apart? I can\'t.). I don\'t know anything by either of these colors.')
 } 
 
-var favColor = color == favorite ? ("That's why it's my favorite color.") : ("But it's not my favorite color.")
+console.log(color == favorite ? "That's why it's my favorite color." : "But it's not my favorite color.")
 
-console.log(favColor)
+// var favColor 
+
+// console.log(favColor)
 
 // TODO: Create a block of if/else statements to check for every color except indigo and violet.
 // TODO: When a color is encountered log a message that tells the color, and an object of that color.
