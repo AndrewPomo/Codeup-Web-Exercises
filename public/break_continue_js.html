@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Break & Continue JS</title>
+</head>
+<body>
+<script>
+	"use strict"
+
+	do {
+		var random = Math.floor((Math.random()*50)+1);
+	}
+	while (random % 2 == 0);
+		
+	console.log('Random odd number to skip is: ' + random);
+	
+	// Without a break, 'i>0' would result in an infinite loop. It makes more sense to just set the condition to 'i<=49' and have no break, but the exercise asks for a break.
+
+	for (var i = 1; i>0; ++i) {
+		if (i == 50) {
+			break;
+		} else if (i % 2 == 0) {
+			continue;
+		}
+		else if (i == random) {
+			continue;
+		}
+		console.log('Here is an odd number: ' + i);
+	}
+
+</script>
+</body>
+</html>
