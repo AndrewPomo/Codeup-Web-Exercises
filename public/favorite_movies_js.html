@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Favorite Movies</title>
+</head>
+<body>
+<script>
+	(function(){
+	    "use strict"
+	    
+	    var movies = ['The Happening', 'Gigli', '2001: A Space Odyssey', 'Batman & Robin', 'Battlefield Earth', 'Mac and Me', 'Glitter', 'The Room', 'Freddy Got Fingered', 'Disaster Movie'];
+	    var favorite = "2001: A Space Odyssey"
+
+
+	    for (var i = 0; i < movies.length; i++){
+	   		if (movies[i] == favorite)	{
+	    		console.log ("This is my favorite: " + movies[i]);
+	    	}
+	    	else {
+	    		console.log (movies[i])
+	    	}
+    	}
+
+	    movies.forEach(function (element, index, array) {
+	    	if (element == favorite)	{
+	    		console.log ("This is my favorite: " + element);
+	    	}
+	    	else {
+	    		console.log (element)
+	    	}
+	    })
+	}());
+</script>
+</body>
+</html>
