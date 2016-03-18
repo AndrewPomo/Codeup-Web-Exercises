@@ -7,24 +7,31 @@
 <script>
 // todo: Ask the user for their name.
 //       Keep asking if an empty input is provided.
+"use strict"
+
 do {
-	var userName = prompt ("Hi there! I'm Andrew. What's your name?");
-} while  (userName == null || userName == '');
-console.log ("User's name is " + userName)
+	var userName = prompt ("Hi there! Before I let you use my site, I've got a few questions for you. We'll start with an easy one - What's your name?");
+} 	while  (userName == null || userName == '');
+
+console.log ("User's name is " + userName);
+
+if (userName == "Andrew" || userName == "andrew") {
+	var pizzaHaterFilter="perfect";
+	alert("Nice! Andrew is objectively the very best name for a human. No need to ask you anymore questions...carry on.")
+} else	{
+	var pizzaHaterFilter = confirm(userName + "? Hmmm. That's a pretty stupid name. Let's try a different question. Do you like pizza? Click \"Okay\" if you do, or \"Cancel\" if you don't.")
+}
 
 // todo: Show an alert message that welcomes the user based on their input.
 
-alert(userName + "? Hmmm. That's a pretty stupid name. Strike one...")
-
-// todo: Ask the user if they like pizza.
-//       Based on their answer show a creative alert message.
-
-var pizzaHaterFilter = confirm ("Alright, " + userName + ", you can redeem yourself and your stupid name by correctly answering this question. Do you like pizza? Click \"Okay\" if you do, or \"Cancel\" if you don't.")
+// todo: Ask the user if they like pizza. Based on their answer show a creative alert message.
 	
 	if (pizzaHaterFilter == true)	{
 		alert("Well, " + userName + ", you're in luck. I don't usually allow people with stupid names to use my site, but since you correctly answered my question, I'll make an exception.")
-		console.log("Doesn't hate pizza.");
-	}	else {
+		console.log(userName + " doesn't hate pizza.");
+	}	else if (pizzaHaterFilter == "perfect"){
+		console.log("User is perfect")
+	}	else	{
 		alert("Well, " + userName + ", you are officially the worst person. I already didn't like you because of your name, but the fact that you hate pizza makes my decision to ban you from this page for life much easier. Good riddance.")
 	}
 
