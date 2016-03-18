@@ -39,18 +39,17 @@ logPlanets();
 
 console.log('Finding and logging the index of "Earth" in the planets array.');
 // todo: Do what the log statement above says you will do.
-
 var earthIndex = planets.indexOf("Earth")
 console.log(earthIndex)
 
 console.log('Using splice to remove the planet after Earth.');
 // todo: Do what the log statement above says you will do.
-var splicedPlanet = planets.splice(3,1);
+var splicedPlanet = planets.splice(earthIndex + 1,1);
 logPlanets();
 
 console.log('Using splice to add back the planet after Earth.');
 // todo: Do what the log statement above says you will do.
-planets.splice(3,0,splicedPlanet[0])
+planets.splice(earthIndex+1,0,splicedPlanet[0])
 logPlanets();
 
 console.log('Reversing the order of the planets array.');
