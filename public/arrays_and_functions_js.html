@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array & Functions</title>
+</head>
+<body>
+<script>
+(function() {
+"use strict";
+
+var movies = ['The Happening', 'Gigli', 'Batman & Robin', 'Battlefield Earth', 'Mac and Me', 'Glitter', 'The Room', 'Freddy Got Fingered', 'Superbabies: Baby Geniuses 2', 'Troll 2', 'Shawshank Redemption'];
+
+// Sort your favorite movies alphabetically
+
+movies.sort();
+// console.log(movies);
+
+// Use .indexOf() to find your number one favorite movie
+
+var favMovieIndex = movies.indexOf("Mac and Me");
+// console.log (favMovieIndex)
+
+// Use .splice() to take that movie out of the array
+
+var favMovie = movies.splice(favMovieIndex,1);
+// console.log (movies)
+// console.log (favMovie)
+// Put your favorite movie back in at the start of the array
+
+movies.unshift(favMovie[0]);
+
+
+// Repeat the above steps for your least favorite movie; put it at the end
+var badMovieIndex = movies.indexOf('Shawshank Redemption');
+// console.log (badMovieIndex)
+var badMovie = movies.splice(badMovieIndex,1);
+// console.log (movies)
+// console.log (badMovie)
+movies.push(badMovie[0]);
+// console.log (movies)
+
+
+// Create a function to console.log() your favorite movies.
+    // DO NOT VIOLATE SCOPE! Pass your favoriteMovies array in as a parameter
+    // Your function should output:
+    // "My all time favorite movie is [your favorite movie here]"
+    // "My least favorite movie is [your least favorite movie here]"
+    // "Some other movies are [the rest of the movies array with comma space between them]"
+    // You should not output any movies twice.
+var movieLog = function (favMovie, badMovie, movies){
+	console.log("My favorite movie is " + favMovie);
+	console.log("My least favorite movie is " + badMovie);
+	movies.pop();
+	movies.shift();
+	var lastMovie = movies.splice(-1,1);
+	console.log("Some other movies are " + movies.join(", "), "and " + lastMovie + ".");
+ }
+ movieLog(favMovie, badMovie, movies);
+
+ console.log(movies);
+
+})();
+</script>
+
+</body>
+</html>
