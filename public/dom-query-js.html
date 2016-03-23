@@ -6,6 +6,11 @@
 </head>
 <body>
     <h1 id="main-header">Hello World!</h1>
+    <button id="javaCoolBtn">Make JavaScript Cool</button>
+    <button id="blueSubBtn">Make Subheader Blue</button>
+    <button id="changeLiBtn">Make Lis Blue & Grey</button>
+    <button id="subHeadBtn">Accomplish Mission</button>
+
     <ul>
         <li data-dbid="1">Item 1</li>
         <li data-dbid="2">Item 2</li>
@@ -55,36 +60,67 @@
         "use strict";
         (function(){
             // TODO: Uncomment next line and get the main header element by id
-            var mainHeader = document.getElementById('main-header');
 
             // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-            mainHeader.innerHTML = "Javascript is Cool!";
+            // mainHeader.innerHTML = "Javascript is Cool!";
+
+            var javaCool = function (event) {
+                var mainHeader = document.getElementById('main-header');
+                mainHeader.innerHTML = "Javascript is Cool!"
+            }
+
+            var javaCoolBtn = document.getElementById('javaCoolBtn');
+            javaCoolBtn.addEventListener('click', javaCool);
 
             // TODO: Uncomment the next line and get the sub header element by id
-            var subHeader = document.getElementById('sub-header');
+
+
 
             // TODO: Set the text color of subHeader to blue
-            subHeader.style.color = "blue";
+            // subHeader.style.color = "blue";
+            var makeBlueSub = function (event) {
+                var subHeader = document.getElementById('sub-header');
+                subHeader.style.color = "blue";
+            }
+
+            var blueSubBtn = document.getElementById("blueSubBtn");
+            blueSubBtn.addEventListener('click', makeBlueSub)
 
             // TODO: Uncomment the next line and get all list items
-            var listItems = document.getElementsByTagName('li');
+            
 
             // TODO: Set text color on every other list item to grey
             // TODO: Set text color of li with dbid = 1 to blue
-            for (var i = 0; i < listItems.length; i++) {
-                if (i % 2 == false) {
-                    listItems[i].style.color = "grey";
-                }
-                var dbId = listItems[i].getAttribute("data-dbid");
-                if (dbId == 1) {
-                    listItems[i].style.color = "blue";
+            var changeLis = function (event) {
+                var listItems = document.getElementsByTagName('li');
+                for (var i = 0; i < listItems.length; i++) {
+                    if (i % 2 == false) {
+                        listItems[i].style.color = "grey";
+                    }
+                    var dbId = listItems[i].getAttribute("data-dbid");
+                    if (dbId == 1) {
+                        listItems[i].style.color = "blue";
+                    }
                 }
             }
+
+            var changeLiBtn = document.getElementById("changeLiBtn");
+            changeLiBtn.addEventListener('click', changeLis)
+
+            
+
+            
+            
             // TODO: Uncomment the next line and get all elements with class name sub-paragraph
-            var subParagraphs = document.getElementsByClassName('sub-paragraph');
 
             // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
-            subParagraphs[0].innerHTML = "Mission Accomplished!"
+            var subHeadBlue = function (event) {    
+            var subParagraphs = document.getElementsByClassName('sub-paragraph');
+                subParagraphs[0].innerHTML = "Mission Accomplished!"
+            }
+
+            var subHeadBtn = document.getElementById('subHeadBtn');
+            subHeadBtn.addEventListener('click', subHeadBlue);
         })();
     </script>
 </body>
