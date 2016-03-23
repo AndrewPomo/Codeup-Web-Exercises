@@ -13,6 +13,7 @@
  	//Fields
  	var leftOperand = document.getElementById('left_operand');
  	var rightOperand = document.getElementById('right_operand');
+ 	var operatorField = document.getElementById('operator');    	
  	
 
  	
@@ -38,12 +39,20 @@
 
  	 // Get all number buttons
  	var insNumber = function (event) { 
-    	var operatorField = document.getElementById('operator');
-	    	console.log(this.value);
-	    	console.log(operatorField)	    	
-    	if (operatorField.value == "Operator") {
-    		leftOperand.value = leftOperand.value + this.value;
+    	var operatorField = document.getElementById('operator');    	
+    	if (operatorField.value == "Operator" && leftOperand.value == "First #") {
+    		leftOperand.value = this.value;
+	    } else if (operatorField.value == "Operator" && leftOperand.value != "First #") {
+	    	leftOperand.value = leftOperand.value + this.value;
 	    }
+    }
+
+    var insOperator = function (event) { 
+    	var leftOperand = document.getElementById('left_operand');
+ 		var rightOperand = document.getElementById('right_operand');
+    	if (leftOperand.value != "First #") {
+    		operatorField.value = this.value;
+	    } 
     }
 
     // Add Click Listener To Number Buttons (And Log Their Values)
@@ -54,8 +63,11 @@
     	}
 
     // // Add Click Listener To Operator Buttons
-    //  var numButton = document.getElementsByClassName('op_button');
-    //         numButton.addEventListener('click', insOperator);
+    var opButtons = document.getElementsByClassName('op_button');
+	    for(var i = 0; i < opButtons.length; i++) {
+    	opButtons[i].addEventListener('click', insOperator);
+    	console.log(opButtons[i].value);
+    	}
 
     // // Add Click Listener To Equals Button
     //  var numButton = document.getElementsByClassName('equals_button');
