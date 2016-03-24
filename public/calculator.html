@@ -9,37 +9,54 @@
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,800,700,600,400,300' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <input id="left_operand" value="First #" class="input col-xs-5" name="Left Operand" type="text" placeholder="Left Operand">
-            <input id="operator" value="Operator" class="input col-xs-2 operator" name="Operator" type="text" placeholder="Operator">
-            <input id="right_operator" value="Second #" class="input right_operand col-xs-5"  name="Right Operand" type="text" placeholder="Right Operand">
+    <div id="calculator_holder" class="container">
+    	<div class="row" id="display_circle_holder">
+	    	<div id="red_circle" class="circles">
+	    		<p class="circle_hover"> x</p>
+	    	</div>
+	    	<div id="yel_circle" class="circles">
+	    		<p class="circle_hover"> -</p>
+	    	</div>
+	    	<div id="grn_circle" class="circles">
+	    		<p class="circle_hover"> +</p>
+	    	</div>
+            <input id="display_field"  class="input col-xs-12" name="display" type="text" placeholder="0">
         </div>
-        <div class="row">
-            <button id="oneBtn" value="1"class="num_button col-xs-3 col-sm-3 col-md-3 col-lg-3">1</button>
-            <button id="twoBtn" value="2"class="num_button col-xs-3 col-sm-3 col-md-3 col-lg-3">2</button>
-            <button id="threeBtn" value="3"class="num_button col-xs-3 col-sm-3 col-md-3 col-lg-3">3</button>
-            <button id="addBtn" value="+" class="op_button col-xs-3 col-sm-3 col-md-3 col-lg-3">+</button>
+        <div class="row value_row">
+            <input id="left_operand" value="" class="input col-xs-5" name="Left Operand" type="text" placeholder="First #">
+            <input id="operator" value="" class="input col-xs-2 operator" name="Operator" type="text" placeholder="Operator">
+            <input id="right_operand" value="" class="input right_operand col-xs-5"  name="Right Operand" type="text" placeholder="Second #">
         </div>
-        <div class="row">
-            <button id="fourBtn" value="4"class="num_button col-xs-3 col-sm-3 col-md-3 col-lg-3">4</button>
-            <button id="fiveBtn" value="5" class="num_button col-xs-3 col-sm-3 col-md-3 col-lg-3">5</button>
-            <button id="sixBtn" value="6" class="num_button col-xs-3 col-sm-3 col-md-3 col-lg-3">6</button>
-            <button id="subtractBtn" value="-" class="op_button col-xs-3 col-sm-3 col-md-3 col-lg-3">-</button>
+        <div class="row row_1">
+        	<button id="clearBtn" class="spec_button col_1 col-xs-3 col-sm-3 col-md-3 col-lg-3">C</button>
+        	<button id="pos_neg" class="spec_button col_2 col-xs-3 col-sm-3 col-md-3 col-lg-3">+/-</button>
+        	<button id="percent" class="spec_button col_3 col-xs-3 col-sm-3 col-md-3 col-lg-3">%</button>
+            <button id="divideBtn" value="÷" class="op_button col_4 col-xs-3 col-sm-3 col-md-3 col-lg-3">÷</button>
         </div>
-        <div class="row">
-            <button id="sevenBtn" value="7" class="num_button col-xs-3 col-sm-3 col-md-3 col-lg-3">7</button>
-            <button id="eightBtn" value="8" class="num_button col-xs-3 col-sm-3 col-md-3 col-lg-3">8</button>
-            <button id="nineBtn" value="9" class="num_button col-xs-3 col-sm-3 col-md-3 col-lg-3">9</button>
-            <button id="multiplyBtn" value="x" class="op_button col-xs-3 col-sm-3 col-md-3 col-lg-3">*</button>
+        <div class="row row_2">
+        	<button id="sevenBtn" value="7" class="num_button col_1 col-xs-3 col-sm-3 col-md-3 col-lg-3">7</button>
+            <button id="eightBtn" value="8" class="num_button col_2 col-xs-3 col-sm-3 col-md-3 col-lg-3">8</button>
+            <button id="nineBtn" value="9" class="num_button col_3 col-xs-3 col-sm-3 col-md-3 col-lg-3">9</button>
+            <button id="multiplyBtn" value="*" class="op_button col_4 col-xs-3 col-sm-3 col-md-3 col-lg-3">x</button>
         </div>
-        <div class="row">
-            <button id="clearBtn" class="clear_button col-xs-3 col-sm-3 col-md-3 col-lg-3">C</button>
-            <button id="zeroBtn" value="0" class="num_button col-xs-3 col-sm-3 col-md-3 col-lg-3">0</button>
-            <button id="equalsBtn" class="equals_button col-xs-3 col-sm-3 col-md-3 col-lg-3">=</button>
-            <button id="divideBtn" value="/" class="op_button col-xs-3 col-sm-3 col-md-3 col-lg-3">/</button>
+        <div class="row row_3">
+        	<button id="fourBtn" value="4"class="num_button col_1 col-xs-3 col-sm-3 col-md-3 col-lg-3">4</button>
+            <button id="fiveBtn" value="5" class="num_button col_2 col-xs-3 col-sm-3 col-md-3 col-lg-3">5</button>
+            <button id="sixBtn" value="6" class="num_button col_3 col-xs-3 col-sm-3 col-md-3 col-lg-3">6</button>
+            <button id="subtractBtn" value="-" class="op_button col_4 col-xs-3 col-sm-3 col-md-3 col-lg-3">-</button>
         </div>
-    </div>          
+        <div class="row row_4">
+            <button id="oneBtn" value="1"class="num_button col_1 col-xs-3 col-sm-3 col-md-3 col-lg-3">1</button>
+            <button id="twoBtn" value="2"class="num_button col_2 col-xs-3 col-sm-3 col-md-3 col-lg-3">2</button>
+            <button id="threeBtn" value="3"class="num_button col_3 col-xs-3 col-sm-3 col-md-3 col-lg-3">3</button>
+            <button id="addBtn" value="+" class="op_button col_4 col-xs-3 col-sm-3 col-md-3 col-lg-3">+</button>
+        </div>
+        <div class="row row_5">
+            <button id="zeroBtn" value="0" class="num_button col_2 col-xs-6 col-sm-6 col-md-6 col-lg-6">0</button>
+            <button id="decimal" value="."class="num_button col_2 col-xs-3 col-sm-3 col-md-3 col-lg-3">.</button>
+            <button id="equalsBtn" class="equals_button col_4 col-xs-3 col-sm-3 col-md-3 col-lg-3">=</button>
+        </div>
+    </div>    
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
