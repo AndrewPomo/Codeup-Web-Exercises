@@ -17,6 +17,11 @@ body {
     margin: 0px;
 }
 
+#divideBtn, #subtractBtn, #addBtn, #equals_button{
+    font-size:30px;
+    font-weight:300px;
+}
+
 #zeroBtn {
     text-align: left;
     padding-left:23px;
