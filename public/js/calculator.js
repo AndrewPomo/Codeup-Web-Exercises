@@ -73,11 +73,14 @@ var checkAndInsert = function(inputBtnValue, targetField){
 		} else if (operatorField.value == "") {
 			var answer = leftNumber;
 		} else if (operatorField.value == "+" && rightOperand.value == "") {
-			var answer = leftNumber + leftNumber;
+			rightOperand.value == leftOperand.value;
+			console.log(rightOperand.value);
+			var answer = leftNumber + rightNumber;
     	} else if(operatorField.value == "-" && rightOperand.value == "") {
     		var answer = leftNumber - leftNumber;
     	} else if(operatorField.value == "*" && rightOperand.value == "") {
-    		var answer = leftNumber * leftNumber;
+    		rightOperand.value == leftOperand.value;
+    		var answer = leftNumber * rightNumber;
     	} else if(operatorField.value == "/" && rightOperand.value == "") {
     		var answer = leftNumber / leftNumber;
     	} else if(operatorField.value == "+") {
