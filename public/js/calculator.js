@@ -28,21 +28,39 @@
  	var clearBtn = document.getElementById('clearBtn');
 
 //Insert Number Function
- 	var insNumber = function (event) { 
-    	if (operatorField.value == "" && leftOperand.value == "") {
-    		leftOperand.value = this.value;
-    		displayField.value = this.value;
-	    } else if (operatorField.value == "" && leftOperand.value != "") {
-	    	leftOperand.value = leftOperand.value + this.value;
-	    	displayField.value = leftOperand.value;
-	    } else if (operatorField.value != "" && leftOperand.value != "" && rightOperand.value == "") {
-	    	rightOperand.value = this.value;
-	    	displayField.value = rightOperand.value;
-		} else if (operatorField.value != "" && leftOperand.value != "" && rightOperand.value != "") {
-	    	rightOperand.value = rightOperand.value + this.value;
-	    	displayField.value = rightOperand.value;
-	    }
+ 	var insNumber = function (event) {
+ 		console.log('Event target is ' + event.target.id); 
+ 		if (operatorField.value == "" && leftOperand.value == "") {
+	    		leftOperand.value = this.value; 
+	    		displayField.value = leftOperand.value;
+		    } else if (operatorField.value == "" && leftOperand.value != "") {
+		    	checkAndInsert(this.value, leftOperand);
+		    	checkAndInsert(this.value, displayField);
+		    	//leftOperand.value += this.value;
+		    	//displayField.value = leftOperand.value;
+		    } else if (operatorField.value != "" && leftOperand.value != "" && rightOperand.value == "") {
+		    	rightOperand.value = this.value;
+		    	displayField.value = rightOperand.value;
+			} else if (operatorField.value != "" && leftOperand.value != "" && rightOperand.value != "") {
+				checkAndInsert(this.value, rightOperand);
+				checkAndInsert(this.value, displayField);
+		    	//rightOperand.value += this.value;
+		    	//displayField.value = rightOperand.value;
+		    }
     }	
+
+var checkAndInsert = function(inputBtnValue, displayTarget){
+		console.log('I am checking....');
+		if (displayTarget.value.indexOf(".") > 0 && inputBtnValue == '.') {
+			//return displayTarget.value;
+			console.log('Already have a decimal!');
+		} else if(inputBtnValue == '.') { 
+			displayTarget.value += '.';
+		}
+		else{
+			displayTarget.value += inputBtnValue;
+		}    
+ }
 
 //Insert Operator Function
     var insOperator = function (event) { 
@@ -68,6 +86,9 @@
     	}else if(operatorField.value == "/") {
     		var answer = leftNumber / rightNumber;
     	}
+    	leftOperand.value = answer;
+    	operator.value = "";
+    	rightOperand.value = "";
 		displayField.value = answer;
 	}
 
@@ -106,9 +127,45 @@
 	    	displayField.value = rightOperand.value;
 	    }
     }	
+
+    // Insert Decimal
+  //   var insDecimal = function (event) { 
+  //   	if (operatorField.value == "" && leftOperand.value == "") {
+  //   		if (leftOperand.value.indexOf(".") > 0) {
+  //   		return;
+  //   		} else { 
+  //   			leftOperand.value = this.value;
+  //   			displayField.value = this.value;
+  //   		}
+  //   	}
+	 //    } else if (operatorField.value == "" && leftOperand.value != "") {
+	 //    	if (leftOperand.value.indexOf(".") > 0) {
+  //   		return;
+  //   		} else {
+	 //    		leftOperand.value = leftOperand.value + this.value;
+	 //    		displayField.value = leftOperand.value;
+	 //    	}
+  //   	} else if (operatorField.value != "" && leftOperand.value != "" && rightOperand.value == "") {
+	 //    	if (rightOperand.value.indexOf(".") > 0 ) {
+	 //    		return;
+	 //    	} else {
+		//     	rightOperand.value = this.value;
+		//     	displayField.value = rightOperand.value;
+		//     }
+		// } else if (operatorField.value != "" && leftOperand.value != "" && rightOperand.value != "") {
+	 //    	if (rightOperand.value.indexOf(".") > 0 ) {
+  //   		return;
+  //   		} else {
+		//     	rightOperand.value = rightOperand.value + this.value;
+		//     	displayField.value = rightOperand.value;
+		//     }
+	 //    }
+    
+    // }
+
     	
 
-    // Add Click Listener To Number Buttons (And Log Their Values)
+    // Add Click Listener To Number Buttons
     var numButtons = document.getElementsByClassName('num_button');
 	    for(var i = 0; i < numButtons.length; i++) {
     	numButtons[i].addEventListener('click', insNumber);
@@ -138,6 +195,9 @@
     var percentButton = document.getElementById('percent');
         percentButton.addEventListener('click', percentify);
 
+    // Add Click Listener To Decimal Button
+    // var decimalButton = document.getElementById('decimal');
+    //     decimalButton.addEventListener('click', insDecimal);
    
 
    

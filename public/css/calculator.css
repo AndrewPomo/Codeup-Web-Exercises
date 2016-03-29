@@ -28,7 +28,7 @@ body {
     border-left: none;
 }
 
-.num_button:focus, .op_button:focus, .equals_button:focus, .spec_button:focus{
+.num_button:focus, .op_button:focus, .equals_button:focus, .spec_button:focus {
     background-color: none;
     outline: 0;
     -webkit-box-shadow: none;
@@ -36,7 +36,7 @@ body {
 }
 
 .num_button:active,
-.spec_button:active {
+.spec_button:active,
     background-color: #949494
 }
 
