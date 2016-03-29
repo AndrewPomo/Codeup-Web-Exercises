@@ -33,7 +33,7 @@ var insNumber = function (event) {
 
 //Check For Decimal and Insert Item
 var checkAndInsert = function(inputBtnValue, targetField){
-	if (targetField.value.indexOf(".") > 0 && inputBtnValue == '.') {
+	if (targetField.value.indexOf(".") > -1 && inputBtnValue == '.') {
 	} else if(inputBtnValue == '.') { 
 		targetField.value += '.';
 	}
