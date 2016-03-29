@@ -76,10 +76,10 @@ body {
     z-index: 100000;
 }
 .circle_hover {
-    font-size:6px;
-    font-weight: 600;
-    margin-left:1.4px;
-    margin-top:-1px;
+    font-size:10px;
+    font-weight: 800;
+    margin-left:3.5px;
+    margin-top:-2px;
 }
 
 .circle_hover:hover {
