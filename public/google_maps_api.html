@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        #map-canvas {
+            width: 770px;
+            height: 481px;
+        }
+    </style>
+</head>
+<body>
+    <!-- div to hold map -->
+    <h1>Some Cool Places</h1>
+    <div id="map-canvas"></div>
+
+    <!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBI_3gF63Qai9azPm_fBicfJHYnSXCoe60"></script>
+
+    <!-- Script to show address on map -->
+    <script type="text/javascript">
+    (function() {
+        "use strict";
+
+        // Set our map options
+        var mapOptions = {
+            // Set the zoom level
+            center: {lat: 29.449043, lng: -98.491830},
+            zoom: 14,
+            }
+
+        // Render the map
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        // Set our address to geocode
+        var attaAddress = "119 Kings Ct, San Antonio, TX, 78212";
+
+        // Init geocoder object
+        var geocoder = new google.maps.Geocoder();
+
+        var attaContent = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          "<h1 id='firstHeading' class='firstHeading'>Cullum's Attagirl Icehouse</h1>"+
+          '<div id="bodyContent">'+
+          "<p><b>Cullum's Attagirl Icehouse</b>, also referred to as simply <b>Attagirl</b>, is a dive bar in the mid-town region of San Antonio, Texas. It lies about three blocks south of the nearest school - Trinity University - by road. Attagirl and The Cookhouse are the lone features of the bar and restaurant scene of Mistletoe Avenue.</p><p>A plentiful source of <b>pretentious craft beer</b> (there are 10 pretty obscure beers on tap at any moment), Attagirl is sacred to local hipsters and foodies. In addition, the menu offers a variety of flavors of <b>chicken wings</b>, a unique <b>bologna sandwich</b>, <b>potato chips</b> and <b>a tiny-ass chocolate pie</b>.</p><p>Attagirl is listed as a <b>World Heritage Site.</b></p>"
+          '</div>'+
+          '</div>';
+
+        var attaInfo = new google.maps.InfoWindow ({
+            content:attaContent
+        })
+
+        var barbaContent = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          "<h1 id='firstHeading' class='firstHeading'>Barbaro</h1>"+
+          '<div id="bodyContent">'+
+          "<p><b>Barbaro</b>, also referred to as simply <b>Barbaro</b>, is a restaurant in the mid-town region of San Antonio, Texas. It lies about four blocks North of the nearest Post Office - U.S. Post Office - by road. Barbaro serves up rustic wood-fired pizza & creative toppings. On top of that, they serve up some seriously strong and delicious cocktails, and have a great brunch on the weekends.</p><p>Don't go there if you're trying to save money though, they are chinchy AF and will nickel and dime you in ways that can be pretty frustrating. The only day on which this is not the case is Monday, when you can get a delicious pizza for something like $7. Damn!</p><p>Barbaro is listed as a <b>World Heritage Site.</b></p>"
+          '</div>'+
+          '</div>';
+
+        var barbaInfo = new google.maps.InfoWindow ({
+            content:barbaContent
+        })
+
+        var sanchoContent = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          "<h1 id='firstHeading' class='firstHeading'>Sancho's Cantina</h1>"+
+          '<div id="bodyContent">'+
+          "<p><b>Sancho's Cantina & Cocina</b>, also referred to as simply <b>Sancho's</b>, is a Mexican restaurant and bar in the mid-town region of San Antonio, Texas. It lies about three blocks south of the nearest school - San Antonio College - by road. Sanchos features <b>deafening live jazzy-blues-rock music</b> that will make conversation exceedingly difficult.</p><p>Sancho's serves up some unique tacos, including <b>vegetarian and vegan offerings</b> for you and your hippie friends. Each order comes with three mini tacos assembled with (seemingly) fresh ingredients and sauces. There are also <b>several options for getting drunk</b>, like the stupidly thick avocado margarita, or the Sanchorita, which is basically a Dos-a-rita with hot sauce. <b>Not very great!</b></p><p>Sancho's is listed as a <b>World Heritage Site.</b></p>"
+          '</div>'+
+          '</div>';
+
+        var sanchoInfo = new google.maps.InfoWindow ({
+            content:sanchoContent
+        })
+
+
+
+        var restaurants = [
+            {
+                "restaurantName":"Cullum's Attagirl Icehouse", 
+                "restaurantAddress": "119 Kings Ct, San Antonio, Tx, 78212",
+                "restaurantImage": "/img/AttaGirl.png",
+                "restaurantDesc": attaInfo
+            },
+            {
+                "restaurantName":"Barbaro", 
+                "restaurantAddress": "2720 McCullough Ave, San Antonio, Tx, 78212",
+                "restaurantImage": "/img/Barbaro.png",
+                "restaurantDesc": barbaInfo
+            },
+            {
+                "restaurantName":"Sancho's", 
+                "restaurantAddress": "628 Jackson St, San Antonio, Tx, 78212",
+                "restaurantImage": "/img/Sanchos.png",
+                "restaurantDesc": sanchoInfo
+            },
+        ];
+
+        restaurants.forEach (function (restaurant, index, array) {
+            geocoder.geocode({ "address": restaurant.restaurantAddress }, function(results, status) {
+                // Check for a successful result
+                if (status == google.maps.GeocoderStatus.OK) {
+                    // Recenter the map over the address
+                    
+                    var marker = new google.maps.Marker({
+                        position: (results[0].geometry.location),
+                        animation: google.maps.Animation.DROP,
+                        map: map,
+                        icon: restaurant.restaurantImage
+                    })
+                    marker.addListener('click', function() {
+                    restaurant.restaurantDesc.open(map, marker);
+                    });
+                } else {
+                    // Show an error message with the status if our request fails
+                    alert("Geocoding was not successful - STATUS: " + status);
+                }
+            });
+
+
+        });
+        // Geocode our address
+        
+
+    })();
+    </script>
+</body>
