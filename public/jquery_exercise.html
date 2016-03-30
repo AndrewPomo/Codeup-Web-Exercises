@@ -19,9 +19,31 @@
 	<script id="my-js-jq-file" type="text/javascript">
 		"use strict";
 	    $(document).ready(function() {
-	    	$('h1, p, li').css ({
-	    		'background-color' : 'yellow'
-	    	})
+	    	var headerOnes = $('h1');
+	    	var paragraphs = $('p');
+	    	var listItems = $('li');
+
+	    	$(headerOnes).click(function() {
+	    		$(this).css({
+	    			'background-color' : 'yellow'
+	    		});
+	    	});
+
+	    	$(paragraphs).dblclick(function() {
+	    		$(this).css({
+	    			'font-size' : '18px'
+	    		});
+	    	});
+
+	    	$(listItems).hover(function() {
+	    		$(this).css({
+	    			'color' : 'red'
+	    		});
+	    	}, function() {
+	    		$(this).css({
+	    			'color' : 'white'
+	    		});
+	    	});
 	    });
 	
 	</script>
