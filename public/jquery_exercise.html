@@ -4,7 +4,7 @@
 	<title>jQuery Exercises</title>
 </head>
 <body>
-	<h1 class="codeup" id="heading1">This is a perfectly constructed H1.</h1>
+	<h1 class="codeup" id="theHeader">This is a perfectly constructed H1.</h1>
 	<p class="codeup" id="paragraph">This is a perfectly contstructed paragraph.</p>
 	<ul class="list" id="unorderedList">
 		<li class="codeup" id="listItem1">List item one.</li>
@@ -19,12 +19,16 @@
 	<script id="my-js-jq-file" type="text/javascript">
 		"use strict";
 	    $(document).ready(function() {
-	    	alert("The Document is ready!");
-	    	$('.codeup').css ({
-	    		'border' : '1px solid red',
-	    		'background-color' : 'black',
-	    		'color' : 'white',
+	    	var contents = $('h1').html();
+	    	$('h1, p, li').css ({
+	    		'background-color' : 'yellow'
+	    	})
+	    	$('p');
+	    	$('li').css({
+	    		'font-size':'20px',
 	    	});
+
+	    	alert(contents);
 	    });
 	
 	</script>
