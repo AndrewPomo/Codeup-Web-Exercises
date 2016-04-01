@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Konami Code</title>
+    <title>Let's get high in the back room?</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <style type="text/css">
@@ -9,6 +9,10 @@
 		margin:auto;
 		width: 425px;
 		text-align:center;
+	}
+
+	.firstHolders {
+		margin-top: 10%
 	}
 
 	.codeEntry	{
@@ -23,7 +27,6 @@
 	.surprise	{
 		height:100%;
 		width:100%;
-		z-index: 99999999999;
 		display: none;
 	}
 	.charlieHeader {
@@ -57,8 +60,6 @@
 	</div>
 	<div class="container firstHolders">
     	<h1>Enter the Konami Code To Get Your <strong>Free Gift!</strong></h1>
-    </div>
-    <div class="container firstHolders">
     	<input class="codeEntry">
     </div>
 
@@ -81,13 +82,8 @@
             // 
 
 	        if ( userInput == konamiCode[index] ) {
-	        	console.log("Thats right!");
-	        	$('.surprise').css({
-	        			'display' : 'none'
-	        		});
-        		$('.firstHolders').css({
-        			'display' : 'block'
-        		});
+	        	$('.surprise').hide();
+        		$('.firstHolders').show();
         		$('#music').get(0).pause();
         		$('#video').get(0).pause();
 
@@ -129,12 +125,8 @@
 	        	index++;
 	        	if (index == konamiCode.length) {
 	        		index = 0;
-	        		$('.surprise').css({
-	        			'display' : 'block'
-	        		});
-	        		$('.firstHolders').css({
-	        			'display' : 'none'
-	        		});
+	        		$('.surprise').show();
+        			$('.firstHolders').hide();;
 	        		$('#music').get(0).play();
 	        		$('#video').get(0).play();
 
@@ -142,12 +134,8 @@
 	        } else {
 	        	console.log("WRONG!");
 	        	$('.codeEntry').val( "" );
-	        	$('.surprise').css({
-	        			'display' : 'none'
-	        		});
-        		$('.firstHolders').css({
-        			'display' : 'block'
-        		});
+	        	$('.surprise').hide();
+        		$('.firstHolders').show();;
         		$('#music').get(0).pause();
         		$('#video').get(0).pause();
         		displayString = "";
