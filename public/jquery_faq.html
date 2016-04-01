@@ -83,17 +83,15 @@
 
     	$('a').click(function(event){
     		event.preventDefault();
-    		$('dd').toggle();
+    		$('dd').fadeToggle();
     	})
     	$('ul').each(function(index, element) {
     		$(element).children().first().css({
     			'font-weight': 'bold'
     		})
 		})
-	    	$('li').each(function(index, element) {
-    		$(element).click(function(event){
-    			$(this).parent().hide();
-    		})
+	    $('h3').click(function(event){
+    		$(this).next().fadeToggle();
     	})
 	})
     	
