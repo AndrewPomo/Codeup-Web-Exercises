@@ -7,6 +7,7 @@
 	<style type="text/css">
 	.invisible {
 		display:none;
+		visibility: initial;
 	}
 
 	dl {
@@ -82,7 +83,7 @@
 
     	$('a').click(function(event){
     		event.preventDefault();
-    		$('dd').toggleClass('invisible');
+    		$('dd').toggle();
     	})
     	$('ul').each(function(index, element) {
     		$(element).children().first().css({
@@ -91,7 +92,7 @@
 		})
 	    	$('li').each(function(index, element) {
     		$(element).click(function(event){
-    			$(this).parent().toggleClass('invisible');
+    			$(this).parent().hide();
     		})
     	})
 	})
