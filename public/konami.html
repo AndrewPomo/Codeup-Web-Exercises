@@ -2,26 +2,160 @@
 <html>
 <head>
     <title>Konami Code</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<style type="text/css">
+	.container {
+		margin:auto;
+		width: 425px;
+		text-align:center;
+	}
+
+	.codeEntry	{
+		width: 400px;
+		text-align:center;
+		border-top:none;
+		border-right:none;
+		border-left:none;
+		font-size:30px;
+	}
+
+	.surprise	{
+		height:100%;
+		width:100%;
+		z-index: 99999999999;
+		display: none;
+	}
+	.charlieHeader {
+		position:absolute;
+		bottom:40px;
+		right:40px;
+		background-color:transparent;
+		color:white;
+		text-shadow:
+		   -1px -1px 0 #000,  
+		    1px -1px 0 #000,
+		   -1px  1px 0 #000,
+		    1px  1px 0 #000;
+	}
+
+</style>
+
+
+
 </head>
 <body>
-    <h1>Konami Code</h1>
+	<div class="surprise">
+		<video id="video" width="100%" height="100%" loop>
+			<source src="/img/charlieDance.webm" type="video/webm">
+		</video>
+		<audio id="music"  loop>
+			<source src="/img/queryLoop.wav" type="audio/wav">
+		</audio>
+		<h1 class="charlieHeader">Watch Charlie do his thing. It's good, man. It's like...<em>goood</em>.</h1>
+
+	</div>
+	<div class="container firstHolders">
+    	<h1>Enter the Konami Code To Get Your <strong>Free Gift!</strong></h1>
+    </div>
+    <div class="container firstHolders">
+    	<input class="codeEntry">
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <script>
         "use strict";
-        var userInput = []
-        var konamiCode = '38,38,40,40,37,39,37,39,66,65,13';
-        var index
+
+        var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+        var index = 0
+        var displayString = "";
 
         $(document).keyup(function(event){
-            userInput.push(event.keyCode);
-            console.log(userInput.toString());
+            var userInput = event.keyCode
+            // console.log(userInput);
+            // displayString += userInput;
+            // console.log(userInputString);
 
-	        if ( userInput.toString().indexOf( konamiCode ) >= 0 ) {
-	        	$('h1').css({
-	        		'background-color' : 'yellow'
-	        	});
+            // 
+
+	        if ( userInput == konamiCode[index] ) {
+	        	console.log("Thats right!");
+	        	$('.surprise').css({
+	        			'display' : 'none'
+	        		});
+        		$('.firstHolders').css({
+        			'display' : 'block'
+        		});
+        		$('#music').get(0).pause();
+        		$('#video').get(0).pause();
+
+        		var inputNum = konamiCode[index].toString();
+        		 
+    			switch (inputNum){
+					case "38":
+						displayString += "↑ ";
+						$('.codeEntry').val( displayString );
+						break;
+					case "40":
+						displayString += "↓ "
+						$('.codeEntry').val( displayString );
+						break;
+					case "37":
+						displayString += "← "
+						$('.codeEntry').val( displayString );
+						break;
+					case "39":
+						displayString += "→ "
+						$('.codeEntry').val( displayString );
+						break;
+					case "66":
+						displayString += "b "
+						$('.codeEntry').val( displayString );
+						break;
+					case "65":
+						displayString += "a "
+						$('.codeEntry').val( displayString );
+						break;
+					case "13":
+						displayString = ""
+						$('.codeEntry').val( displayString );
+						$('#music').get(0).load();
+        				$('#video').get(0).load();
+						break;
+				}
+	        	$('.codeEntry').val( displayString );
+	        	index++;
+	        	if (index == konamiCode.length) {
+	        		index = 0;
+	        		$('.surprise').css({
+	        			'display' : 'block'
+	        		});
+	        		$('.firstHolders').css({
+	        			'display' : 'none'
+	        		});
+	        		$('#music').get(0).play();
+	        		$('#video').get(0).play();
+
+        		};
+	        } else {
+	        	console.log("WRONG!");
+	        	$('.codeEntry').val( "" );
+	        	$('.surprise').css({
+	        			'display' : 'none'
+	        		});
+        		$('.firstHolders').css({
+        			'display' : 'block'
+        		});
+        		$('#music').get(0).pause();
+        		$('#video').get(0).pause();
+        		displayString = "";
+	        	var wrongString = "WRONG!"
+				$('.codeEntry').val( wrongString );
+	        	index = 0;
 	        }
+	        
         });
 
     </script>
