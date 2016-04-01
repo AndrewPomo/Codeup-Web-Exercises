@@ -49,15 +49,53 @@
 	<a href='#'>Show all answers</a>
 	</div>
 
+	<h3>Great Smoky Mountains NP Facts</h3>
+	<ul id="national-parks">
+        <li>Established in 1934, Great Smoky Mountains National Park is the largest national park East of the Rocky Mountains.</li>
+        <li>Great Smoky Mountains National Park encompasses approximately 244,000 acres in Tennessee and 276,000 acres in North Carolina for a total of 520,000 acres or more than 800 square miles.</li>
+        <li>Great Smoky Mountains National Park is open 24 hours a day, 365 days a year (although certain secondary roads, campgrounds and visitor facilities are closed during the winter).</li>
+        <li>With approximately 9-10 million visitors annually, Great Smoky Mountains National Park is also the most visited national park in the United States.</li>
+    </ul>
+    <h3>Grand Canyon NP Facts</h3>
+    <ul id="state-parks-texas">
+        <li>Was made a national monument in 1908 and became a national park in 1919
+		</li>
+        <li>Covers an area of 1,900 square miles</li>
+        <li>Is 190 miles long</li>
+        <li>Contains some 277 miles of the Colorado River is populated by five Indian tribes: The Hopi, Navajo, Havasupai, Paiute and Hualapai</li>
+    </ul>
+    <h3>Rocky Mountain NP Facts</h3>
+    <ul id="national-parks">
+        <li>Because Trail Ridge Road climbs to an elevation of 12,183 feet, it’s one of the most spectacular places in the world to star gaze. Go into Rocky Mountain National Park at night (the park is open 24/7), drive to a high point, and settle in for some spectacular celestial viewing!</li>
+        <li>Before 1978, there were very few moose in Rocky Mountain National Park. In 1978 and 1979, 24 moose were relocated from Wyoming, and by 1994, the herd had grown to 700 moose. Today, most of the moose in Rocky Mountain National Park are on the western side, in and near Grand Lake.</li>
+        <li>Rocky Mountain National Park averages around 3 million visitors a year.
+		</li>
+        <li>Hundreds of species of animals inhabit the park, including moose, elk, deer, bighorn sheep, cougar, bear, fox, bobcat, marmot, beaver, porcupine, and badger, among others. Several species of fish, including 4 different species of trout, inhabit the park’s lakes and streams.
+		</li>
+    </ul>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script>
     "use strict"
+    $(document).ready(function(event){
 
     	$('a').click(function(event){
     		event.preventDefault();
     		$('dd').toggleClass('invisible');
     	})
+    	$('ul').each(function(index, element) {
+    		$(element).children().first().css({
+    			'font-weight': 'bold'
+    		})
+		})
+	    	$('li').each(function(index, element) {
+    		$(element).click(function(event){
+    			$(this).parent().toggleClass('invisible');
+    		})
+    	})
+	})
+    	
     </script>
 </body>
 </html>
