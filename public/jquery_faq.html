@@ -83,18 +83,18 @@
 
     	$('a').click(function(event){
     		event.preventDefault();
-    		$('dd').fadeToggle();
-    	})
+    		$('dd').slideToggle();
+    	});
     	$('ul').each(function(index, element) {
     		$(element).children().first().css({
     			'font-weight': 'bold'
-    		})
-		})
+    		});
+		});
 	    $('h3').click(function(event){
-    		$(this).next().fadeToggle();
-    	})
-	})
-    	
+    		$(this).next().slideToggle();
+    	});
+	});
+    
     </script>
 </body>
 </html>
