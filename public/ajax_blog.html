@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax Blog</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style type="text/css">
+	
+		.rightBar	{
+			width:25%;
+		}
+
+		#posts	{
+			width:78%;
+
+		}
+
+	</style>
+</head>
+<body>
+	<div class="page-header">
+		<div class="container">
+  			<h1>Lorem In Perpetuum <small>Lorem ipsum omnibus omnium temporum</small></h1>
+  		</div>
+	</div>
+	<div class="container rightBar pull-right">
+		<h3>Welcome to Lorem In Perpetuum!</h3>
+		<p>Lorem In Perpetuum is your #1 source for the latest and greatest lorem ipsum text. You'll find lorem ipsum text, lorem ipsum text and lorem ipsum text! Lorem in Perpetuum has been featured in publications never.</p>
+
+		<h3>Our Sponsors</h3>
+		<ul>
+			<li>Facebook</li>
+			<li>General Motors</li>
+			<li>Goldman Sachs</li>
+			<li>Hasbro</li>
+			<li>Nestle</li>
+			<li>Pete's Tako House</li>
+		</ul>
+	</div>
+	<div class="container" id="posts">
+		
+	</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script>
+"use strict";
+(function() {
+	$.ajax("/data/blog.json").done(function(data) {
+            console.log("AJAX call completed successfully!");
+            console.log("Data returned from server:");
+            console.log(data);
+            data.forEach(function(post,index){
+            	var categories = post.categories;
+            	var postData = ""
+            	postData += '<div>'
+            	postData += "<h2>" + post.title + "</h2>";
+            	postData += "<h5>Categories: ";
+                for (var i = 0; i < (categories.length); i++) {
+                	categories[i] = categories[i].charAt(0).toUpperCase() + categories[i].substr(1);
+                    postData += '<a href="codeup.dev/ajax_blog/category=' + categories[i] + '">' + categories[i] + '</a>'; 
+                    if (i < categories.length - 1) {
+                    	postData += ', ';
+                    };
+                };
+                postData += "</h5>";
+                postData += '<div class="content">' + post.content + "</div>";
+                postData += '</div>'
+                $("#posts").append(postData);
+            })
+    })
+})();
+
+</script>
+</body>
+</html>
