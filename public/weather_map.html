@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather Map</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style type="text/css">
+		#map-canvas {
+            height: 481px;
+        }
+
+        .dayHolder	{
+        	height: 200px;
+        	background-color: lightgrey;
+        	border: 1px solid grey;
+        }
+
+
+	</style>
+</head>
+<body>
+	<div class="header container">
+		<h1>How's the Weather?</h1>
+		<p>Use the map below to check the current weather anywhere!</p>
+	</div>
+
+	<!-- Map Holder -->
+    <div class="container mapHolder">
+    	<div class="col-xs-12" id="map-canvas"></div>
+	</div>
+
+	<!-- Weather Holder -->
+	<div class="container" id="forecastHolder">
+		<!-- <div class="dayHolder col-xs-4 container" id="today">
+			<div class="tempHolder container col-xs-12">
+				<p class="tempInfo text-center">53/42</p>
+			</div>
+			<div class="weathImageHolder container col-xs-12">
+				<div class="weatherImage">53/42</div>
+			</div>
+			<div class="cloudHolder container col-xs-12">
+				<p class="cloudInfo text-center">Clouds: Cloudy</p>
+			</div>
+			<div class="humidHolder container col-xs-12">
+				<p class="humidityInfo text-center">Humidity: Humid</p>
+			</div>
+			<div class="windHolder container col-xs-12">
+				<p class="windInfo text-center">Wind: Windy</p>
+			</div>
+			<div class="pressureHolder container col-xs-12">
+				<p class="pressureInfo text-center">Pressure: Pressurey</p>
+			</div>
+		</div>
+		<div class="dayHolder container col-xs-4 container" id="tomorrow">
+			<div class="tempHolder container  col-xs-12">
+				<p class="tempInfo text-center">53/42</p>
+			</div>
+			<div class="weathImageHolder container col-xs-12">
+				<div class="weatherImage">53/42</div>
+			</div>
+			<div class="cloudHolder container col-xs-12">
+				<p class="cloudInfo text-center">Clouds: Cloudy</p>
+			</div>
+			<div class="humidHolder container col-xs-12">
+				<p class="humidityInfo text-center">Humidity: Humid</p>
+			</div>
+			<div class="windHolder container col-xs-12">
+				<p class="windInfo text-center">Wind: Windy</p>
+			</div>
+			<div class="pressureHolder container col-xs-12">
+				<p class="pressureInfo text-center">Pressure: Pressurey</p>
+			</div>
+		</div>
+		<div class="dayHolder container col-xs-4 container" id="afterTomorrow">
+			<div class="tempHolder container col-xs-12">
+				<p class="tempInfo text-center">53/42</p>
+			</div>
+			<div class="weathImageHolder container col-xs-12">
+				<div class="weatherImage">53/42</div>
+			</div>
+			<div class="cloudHolder container col-xs-12">
+				<p class="cloudInfo text-center">Clouds: Cloudy</p>
+			</div>
+			<div class="humidHolder container col-xs-12">
+				<p class="humidityInfo text-center">Humidity: Humid</p>
+			</div>
+			<div class="windHolder container col-xs-12">
+				<p class="windInfo text-center">Wind: Windy</p>
+			</div>
+			<div class="pressureHolder container col-xs-12">
+				<p class="pressureInfo text-center">Pressure: Pressurey</p>
+			</div>
+		</div> -->
+	</div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARqkh-TCsnLSJyU72z5IxXWDKhAKAaaIo"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- Script to show address on map -->
+    <script type="text/javascript">
+    (function() {
+        "use strict";
+        $(document).ready(function() {
+
+        	// Weather API Call
+	        $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+	    		APPID: "fba2f94408480f3524293a3e6354afa5",
+	    		q:     "San Antonio, TX",
+	    		units: "imperial",
+	    		cnt: "3"
+			}).done(function(data) {
+			    console.log(data);
+			    var day = data.list
+			    day.forEach(function(day,index){
+	            	var forecastData = ""
+	            	forecastData += '<div class="dayHolder col-xs-4 container" id="today"><div class="tempHolder container col-xs-12"><p class="tempInfo text-center">' + day.temp.max + '°/' + day.temp.min + '°</p></div>'
+	            	forecastData += '</div>'
+	                $("#forecastHolder").append(forecastData);
+            	});
+			});
+
+
+	        // Set our map options
+	        var mapOptions = {
+	            // Set the zoom level
+	            center: {lat: 29.449043, lng: -98.491830},
+	            zoom: 14,
+	        }
+
+	        // Render the map
+	        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        });
+    })();
+    </script>
+</body>
+</html>
