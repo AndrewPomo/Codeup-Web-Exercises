@@ -4,7 +4,7 @@
 	<title>Ajax Blog</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<style type="text/css">
-	
+
 		.rightBar	{
 			width:25%;
 		}
@@ -45,7 +45,8 @@
 <script>
 "use strict";
 (function() {
-	$.ajax("/data/blog.json").done(function(data) {
+	// $.ajax("/data/blog.json").done(function(data) {
+		$.ajax("http://scrappr.io/icemancast/api/codeup/blog").done(function(data) {
             console.log("AJAX call completed successfully!");
             console.log("Data returned from server:");
             console.log(data);
@@ -63,7 +64,7 @@
                     };
                 };
                 postData += "</h5>";
-                postData += '<div class="content">' + post.content + "</div>";
+                postData += '<div class="content">' + post.post + "</div>";
                 postData += '</div>'
                 $("#posts").append(postData);
             })

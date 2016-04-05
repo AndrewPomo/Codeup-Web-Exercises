@@ -24,11 +24,11 @@
 </head>
 <body>
     <p>
-        <button id="btn-move">Move It</button>
-        <button id="btn-scale">Scale It</button>
-        <button id="btn-hide">Hide It</button>
-        <button id="btn-show">Show It</button>
-        <button id="btn-all">Animate All</button>
+        <button id="btn-move">Make it Move Left</button>
+        <button id="btn-scale">Make it get 50% bigger</button>
+        <button id="btn-hide">Make it gone</button>
+        <button id="btn-show">Make it be</button>
+        <button id="btn-all">Make it do several things, but ultimately nothing</button>
     </p>
 
     <div id="animate-box"></div>
@@ -43,14 +43,17 @@
             // TODO: "Move It" should move the box 100 pixels to the left
             $('#btn-move').click(function() {
                 $('#animate-box').animate ({
-                    left : '-100px'
+                    left : '+=-100px'
                 }, 1000)
             });
 
             // TODO: "Scale It" should expand the box width by 50%
+            var boxWidth = $('#animate-box').width();
+            
             $('#btn-scale').click(function() {
-                var boxWidth = $('#animate-box').width();
-                var boxWidth50Per = (boxWidth+(boxWidth/2));
+                var boxWidthChange = $('#animate-box').width();
+                var boxWidth50Per = (boxWidthChange+(boxWidthChange/2));
+                var boxWidthReturn = (boxWidth50Per-(boxWidth50Per/3));
                 $('#animate-box').animate ({
                     width : boxWidth50Per
                 }, 1000)
@@ -73,18 +76,17 @@
             // TODO: "Animate All" should use an animation stack to:
             //      1) Move and scale the box simultaneously
             //      2) Hide the box
-            //      3) Reset the box back to its original position and opacity
-                var boxWidth = $('#animate-box').width();
-                var boxWidth50Per = (boxWidth+(boxWidth/2));
-                var boxWidthReturn = (boxWidth50Per-(boxWidth50Per/3));
+            //      3) Reset the box back to its original position, size and opacity
             $('#btn-all').click(function() {
+                var boxWidthChange = $('#animate-box').width();
+                var boxWidth50Per = (boxWidthChange+(boxWidthChange/2));
                 $('#animate-box').animate ({
                     left : '-100px',
                     width : boxWidth50Per
                 }, 1000) .animate ({
                     opacity : 0
                 }, 1000) .animate ({
-                    width : boxWidthReturn,
+                    width : boxWidth,
                     left: '0px',
                     opacity : 1
                 }, 1000)
