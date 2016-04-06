@@ -5,13 +5,30 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<style type="text/css">
 		#map-canvas {
-            height: 481px;
+            height: 380px;
         }
 
         .dayHolder	{
-        	
+        
         	background-color: lightgrey;
-        	border: 1px solid grey;
+        	border-bottom: 1px solid grey;
+        	border-left: 1px solid grey;
+        	border-right: 1px solid grey;
+        }
+
+        #instructions {
+        	background-color: lightgrey;
+        	margin-bottom: 0px;
+        	border-top: 1px solid grey;
+        	border-left: 1px solid grey;
+        	border-right: 1px solid grey;
+        	font-weight:bold;
+        	font-size:18px;
+        	padding-bottom:20px;
+        }
+
+        #mainHeader {
+        	font-size:23px;
         }
 
         .tempHolder {
@@ -26,77 +43,25 @@
 </head>
 <body>
 	<div class="header container">
-		<h1>How's the weather?</h1>
+		<h1 id="mainHeader">How's the weather?</h1>
 	</div>
-	<div id="current"></div>
+	
 
 	<!-- Map Holder -->
     <div class="container mapHolder">
     	<div class="col-xs-12" id="map-canvas"></div>
 	</div>
 
+	<div class="header container">
+
+	</div>
+
 	<!-- Weather Holder -->
+	<div class="container" id="cityNameHolder">
+		<p id="instructions" class="col-xs-12 text-center">Drag the pin to a city to get a 3-Day Forecast!</p>
+	</div>
 	<div class="container" id="forecastHolder">
-		<!-- <div class="dayHolder col-xs-4 container" id="today">
-			<div class="tempHolder container col-xs-12">
-				<p class="tempInfo text-center">53/42</p>
-			</div>
-			<div class="weathImageHolder container col-xs-12">
-				<img class="img-responsive cent" align="middle" src="jsjsjs">
-			</div>
-			<div class="cloudHolder container col-xs-12">
-				<p class="cloudInfo text-center">Clouds: Cloudy</p>
-			</div>
-			<div class="humidHolder container col-xs-12">
-				<p class="humidityInfo text-center">Humidity: Humid</p>
-			</div>
-			<div class="windHolder container col-xs-12">
-				<p class="windInfo text-center">Wind: Windy</p>
-			</div>
-			<div class="pressureHolder container col-xs-12">
-				<p class="pressureInfo text-center">Pressure: Pressurey</p>
-			</div>
-		</div>
-		<div class="dayHolder container col-xs-4 container" id="tomorrow">
-			<div class="tempHolder container  col-xs-12">
-				<p class="tempInfo text-center">53/42</p>
-			</div>
-			<div class="weathImageHolder container col-xs-12">
-				<div class="weatherImage">53/42</div>
-			</div>
-			<div class="cloudHolder container col-xs-12">
-				<p class="cloudInfo text-center">Clouds: Cloudy</p>
-			</div>
-			<div class="humidHolder container col-xs-12">
-				<p class="humidityInfo text-center">Humidity: Humid</p>
-			</div>
-			<div class="windHolder container col-xs-12">
-				<p class="windInfo text-center">Wind: Windy</p>
-			</div>
-			<div class="pressureHolder container col-xs-12">
-				<p class="pressureInfo text-center">Pressure: Pressurey</p>
-			</div>
-		</div>
-		<div class="dayHolder container col-xs-4 container" id="afterTomorrow">
-			<div class="tempHolder container col-xs-12">
-				<p class="tempInfo text-center">53/42</p>
-			</div>
-			<div class="weathImageHolder container col-xs-12">
-				<div class="weatherImage">53/42</div>
-			</div>
-			<div class="cloudHolder container col-xs-12">
-				<p class="cloudInfo text-center">Clouds: Cloudy</p>
-			</div>
-			<div class="humidHolder container col-xs-12">
-				<p class="humidityInfo text-center">Humidity: Humid</p>
-			</div>
-			<div class="windHolder container col-xs-12">
-				<p class="windInfo text-center">Wind: Windy</p>
-			</div>
-			<div class="pressureHolder container col-xs-12">
-				<p class="pressureInfo text-center">Pressure: Pressurey</p>
-			</div>
-		</div> -->
+		
 	</div>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARqkh-TCsnLSJyU72z5IxXWDKhAKAaaIo"></script>
@@ -151,20 +116,66 @@
 				}).done(function(data) {
 				    console.log(data);
 				    var day = data.list;
-		            var forecastData = ""
+		            var forecastData = "";
+		            var cityName = data.city.name;
+		            $('#instructions').html("Here's the forecast for " + cityName + '!');
 				    day.forEach(function(day,index){
-		            	forecastData += '<div class="dayHolder col-xs-4 container"><div class="dayNameHolder container col-xs-12"><p class="day text-center"><strong>'
+				    	var date = new Date(day.dt*1000);
+				    	console.log(date);
+				    	var month = date.getMonth();
+				    	var specDate = date.getDate();
+				    	var dayName = date.getDay();
+				    	console.log(dayName)
+				    	
+		            	forecastData += '<div class="dayHolder col-xs-4 container"><div class="dateHolder container col-xs-12"><p class="day text-center"><strong>'
 		            	if (index == 0) {
-				    		forecastData += 'Today'
+				    		forecastData += 'Today - '
 				    	} else if (index == 1) {
-				    		forecastData += 'Tomorrow'
+				    		forecastData += 'Tomorrow - '
 				    	} else if (index == 2) {
-				    		forecastData += 'The Next Day'
+				    		if (dayName == 0) {
+				    			forecastData += 'Monday - '
+				    		} else if (dayName == 1) {
+				    			forecastData += 'Tuesday - '
+				    		} else if (dayName == 2) {
+				    			forecastData += 'Wednesday - '
+				    		} else if (dayName == 3) {
+				    			forecastData += 'Thursday - '
+				    		} else if (dayName == 4) {
+				    			forecastData += 'Friday - '
+				    		} else if (dayName == 5) {
+				    			forecastData += 'Saturday - '
+				    		} else if (dayName == 6) {
+				    			forecastData += 'Sunday - '
+				    		}
 				    	}
-		            	forecastData += '</strong></p></div>'
-		            	forecastData += '<div class="dateHolder container col-xs-12"><p class="tempInfo text-center"><strong>' 
-
-		            	forecastData += '</strong></p></div>'
+		            	
+		            	if (month == 0) {
+							forecastData += 'Jan.'
+						} else if (month == 1) {
+							forecastData += 'Feb.'
+						} else if (month == 2) {
+							forecastData += 'Mar.'
+						} else if (month == 3) {
+							forecastData += 'Apr.'
+						} else if (month == 4) {
+							forecastData += 'May.'
+						} else if (month == 5) {
+							forecastData += 'Jun.'
+						} else if (month == 6) {
+							forecastData += 'Jul.'
+						} else if (month == 7) {
+							forecastData += 'Aug.'
+						} else if (month == 8) {
+							forecastData += 'Sep.'
+						} else if (month == 9) {
+							forecastData += 'Oct.'
+						} else if (month == 10) {
+							forecastData += 'Nov.'
+						} else if (month == 11) {
+							forecastData += 'Dec.'
+						}
+		            	forecastData += ' ' + parseInt(specDate) + '</strong></p></div>'
 		            	forecastData += '<div class="tempHolder container col-xs-12"><p class="tempInfo text-center"><strong>' + parseInt(day.temp.max) + '°/' + parseInt(day.temp.min) + '°</strong></p></div>'
 		            	forecastData += '<div class="weathImageHolder container col-xs-12"><img class="center-block id="weatherIcon" src="http://openweathermap.org/img/w/' + day.weather[0].icon + '.png">' + '</div>'
 		            	forecastData += '<div class="cloudHolder container col-xs-12"><p class="cloudInfo text-center"><strong>Cloudiness:</strong> ' + day.clouds +'%</p></div>'
