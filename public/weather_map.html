@@ -29,11 +29,6 @@
 		<h1>How's the weather?</h1>
 	</div>
 	<div id="current"></div>
-	<div class="container" id="coordinateInputs">
-		<input id="latitude"></input>
-		<input id="longitude"></input>
-		<button id="getCoordinates">Get Location!</button>
-	</div>
 
 	<!-- Map Holder -->
     <div class="container mapHolder">
@@ -133,17 +128,20 @@
 		    	position: defaultPos,
 		    	map: map,
 		    	draggable: true,
-		    	title: 'Hello World!'
+		    	title: 'Pick your place!'
 		  	});
+	
 
 	        //Get Lat/Long from dropped pin.
 		  	google.maps.event.addListener(marker, 'dragend', function(event){
+
 			    var latitude = event.latLng.lat().toFixed(3);
 			    var longitude = event.latLng.lng().toFixed(3);
 				map.setCenter(marker.position);
 				marker.setMap(map);
 				map.setZoom(6);
-
+			//Get forecast from dropped pin.
+			
 				$.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
 		    		APPID: "fba2f94408480f3524293a3e6354afa5",
 		    		lat: latitude,
@@ -155,7 +153,18 @@
 				    var day = data.list;
 		            var forecastData = ""
 				    day.forEach(function(day,index){
-		            	forecastData += '<div class="dayHolder col-xs-4 container">'
+		            	forecastData += '<div class="dayHolder col-xs-4 container"><div class="dayNameHolder container col-xs-12"><p class="day text-center"><strong>'
+		            	if (index == 0) {
+				    		forecastData += 'Today'
+				    	} else if (index == 1) {
+				    		forecastData += 'Tomorrow'
+				    	} else if (index == 2) {
+				    		forecastData += 'The Next Day'
+				    	}
+		            	forecastData += '</strong></p></div>'
+		            	forecastData += '<div class="dateHolder container col-xs-12"><p class="tempInfo text-center"><strong>' 
+
+		            	forecastData += '</strong></p></div>'
 		            	forecastData += '<div class="tempHolder container col-xs-12"><p class="tempInfo text-center"><strong>' + parseInt(day.temp.max) + '°/' + parseInt(day.temp.min) + '°</strong></p></div>'
 		            	forecastData += '<div class="weathImageHolder container col-xs-12"><img class="center-block id="weatherIcon" src="http://openweathermap.org/img/w/' + day.weather[0].icon + '.png">' + '</div>'
 		            	forecastData += '<div class="cloudHolder container col-xs-12"><p class="cloudInfo text-center"><strong>Cloudiness:</strong> ' + day.clouds +'%</p></div>'
@@ -172,37 +181,18 @@
 
         		var latitude = "28.4241";
         		var longitude ="-98.4936";
+    //     		var date = new Date(unix_timestamp*1000);
+    //     		console.log(date)
+				// // Hours part from the timestamp
+				// var hours = date.getHours();
+				// // Minutes part from the timestamp
+				// var minutes = "0" + date.getMinutes();
+				// // Seconds part from the timestamp
+				// var seconds = "0" + date.getSeconds();
 
-		       $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
-		    		APPID: "fba2f94408480f3524293a3e6354afa5",
-		    		lat: latitude,
-		    		lon: longitude,
-		    		units: "imperial",
-		    		cnt: "3"
-				}).done(function(data) {
-				    console.log(data);
-				    var day = data.list;
-		            var forecastData = ""
-				    day.forEach(function(day,index){
-		            	forecastData += '<div class="dayHolder col-xs-4 container">'
-		            	forecastData += '<div class="tempHolder container col-xs-12"><p class="tempInfo text-center"><strong>' + parseInt(day.temp.max) + '°/' + parseInt(day.temp.min) + '°</strong></p></div>'
-		            	forecastData += '<div class="weathImageHolder container col-xs-12"><img class="center-block id="weatherIcon" src="http://openweathermap.org/img/w/' + day.weather[0].icon + '.png">' + '</div>'
-		            	forecastData += '<div class="cloudHolder container col-xs-12"><p class="cloudInfo text-center"><strong>Cloudiness:</strong> ' + day.clouds +'%</p></div>'
-		            	forecastData += '<div class="humidHolder container col-xs-12"><p class="humidityInfo text-center"><strong>Humidity:</strong> ' + day.humidity + '%</p></div>'
-		            	forecastData += '<div class="windHolder container col-xs-12"><p class="windInfo text-center"><strong>Wind Speed:</strong> ' + day.speed + 'mph</p></div>'
-		            	forecastData += '<div class="pressureHolder container col-xs-12"><p class="pressureInfo text-center"><strong>Pressure:</strong> ' + day.pressure + 'hPa</p></div>'
-		            	forecastData += '</div>'
-	            	});
-	                $("#forecastHolder").html(forecastData);
-				});
-        	
-        	$('#getCoordinates').click(function(){
-        		var latitude = $('#latitude').val();
-        		var longitude = $('#longitude').val();
-        		console.log(latitude);
-        		console.log(longitude);
-
-        	// Weather API Call
+				// // Will display time in 10:30:23 format
+				// var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+  
 		        $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
 		    		APPID: "fba2f94408480f3524293a3e6354afa5",
 		    		lat: latitude,
@@ -212,9 +202,64 @@
 				}).done(function(data) {
 				    console.log(data);
 				    var day = data.list;
-		            var forecastData = ""
+		            var forecastData = "";
 				    day.forEach(function(day,index){
-		            	forecastData += '<div class="dayHolder col-xs-4 container">'
+				    	var date = new Date(day.dt*1000);
+				    	console.log(date);
+				    	var month = date.getMonth();
+				    	var specDate = date.getDate();
+				    	var dayName = date.getDay();
+				    	console.log(dayName)
+				    	
+		            	forecastData += '<div class="dayHolder col-xs-4 container"><div class="dateHolder container col-xs-12"><p class="day text-center"><strong>'
+		            	if (index == 0) {
+				    		forecastData += 'Today - '
+				    	} else if (index == 1) {
+				    		forecastData += 'Tomorrow - '
+				    	} else if (index == 2) {
+				    		if (dayName == 0) {
+				    			forecastData += 'Monday - '
+				    		} else if (dayName == 1) {
+				    			forecastData += 'Tuesday - '
+				    		} else if (dayName == 2) {
+				    			forecastData += 'Wednesday - '
+				    		} else if (dayName == 3) {
+				    			forecastData += 'Thursday - '
+				    		} else if (dayName == 4) {
+				    			forecastData += 'Friday - '
+				    		} else if (dayName == 5) {
+				    			forecastData += 'Saturday - '
+				    		} else if (dayName == 6) {
+				    			forecastData += 'Sunday - '
+				    		}
+				    	}
+		            	
+		            	if (month == 0) {
+							forecastData += 'Jan.'
+						} else if (month == 1) {
+							forecastData += 'Feb.'
+						} else if (month == 2) {
+							forecastData += 'Mar.'
+						} else if (month == 3) {
+							forecastData += 'Apr.'
+						} else if (month == 4) {
+							forecastData += 'May.'
+						} else if (month == 5) {
+							forecastData += 'Jun.'
+						} else if (month == 6) {
+							forecastData += 'Jul.'
+						} else if (month == 7) {
+							forecastData += 'Aug.'
+						} else if (month == 8) {
+							forecastData += 'Sep.'
+						} else if (month == 9) {
+							forecastData += 'Oct.'
+						} else if (month == 10) {
+							forecastData += 'Nov.'
+						} else if (month == 11) {
+							forecastData += 'Dec.'
+						}
+		            	forecastData += ' ' + parseInt(specDate) + '</strong></p></div>'
 		            	forecastData += '<div class="tempHolder container col-xs-12"><p class="tempInfo text-center"><strong>' + parseInt(day.temp.max) + '°/' + parseInt(day.temp.min) + '°</strong></p></div>'
 		            	forecastData += '<div class="weathImageHolder container col-xs-12"><img class="center-block id="weatherIcon" src="http://openweathermap.org/img/w/' + day.weather[0].icon + '.png">' + '</div>'
 		            	forecastData += '<div class="cloudHolder container col-xs-12"><p class="cloudInfo text-center"><strong>Cloudiness:</strong> ' + day.clouds +'%</p></div>'
@@ -225,10 +270,6 @@
 	            	});
 	                $("#forecastHolder").html(forecastData);
 				});
-			});
-
-        	
-
         });
     })();
     </script>
