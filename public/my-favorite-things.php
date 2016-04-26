@@ -1,8 +1,19 @@
 <?php 
 
-$favesArray = ['Filipa', 'Jack', 'Sadie', 'Spurs', 'Fun', 'Sleep', 'Steak', 'Coffee', 'Bacon'];
+function pageController()
+{
 
-$thingNum = 1;
+	$data = [];
+
+	$favesArray = ['Filipa', 'Jack', 'Sadie', 'Spurs', 'Fun', 'Sleep', 'Steak', 'Coffee', 'Bacon'];
+
+	$data = ['faves' => $favesArray, 'thingNum' => 1];
+
+	return $data;
+
+}
+
+	extract(pageController());
  ?>
 
  <!DOCTYPE html>
@@ -21,14 +32,14 @@ $thingNum = 1;
  <body>
  	<h1>A few of my favorite things.</h1>
  	<table>
- 	<?php foreach ($favesArray as $faveThing) { 
+ 	<?php foreach ($faves as $faveThing) { 
 		if ($thingNum % 2 == 0) {?>
 			<tr class="greyRow">
-				<td> <?php echo "$faveThing"; $thingNum++; ?> </td>
+				<td> <?= "$faveThing"; $thingNum++; ?> </td>
 			</tr>
 		<?php } else {?>
 			<tr>
-				<td> <?php echo "$faveThing"; $thingNum++; ?> </td>
+				<td> <?= "$faveThing"; $thingNum++; ?> </td>
 			</tr>
 		<?php } 
 	} ?>
