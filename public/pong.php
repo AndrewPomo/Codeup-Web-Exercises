@@ -18,8 +18,6 @@ function winSensor($score1, $score2)
 
 function pageController()
 {	
-	
-
 	$pingScore = zeroSensor("pingScore");
 	$pongScore = zeroSensor("pongScore");
 	$pongScore = winSensor($pongScore, $pingScore);
@@ -40,6 +38,7 @@ extract(pageController());
 <head>
 	<title></title>
 	<link rel="stylesheet" href="/css/pingpong.css">
+	<meta http-equiv="refresh" content="3;url=ping.php?swing=miss&pongScore=<?=$pongScore?>&pingScore=<?=$pingScore+1?>" />
 </head>
 <body>
 	<h1>Take a Swing, Pong!</h1>

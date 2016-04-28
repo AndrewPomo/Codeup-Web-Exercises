@@ -41,6 +41,7 @@ extract(pageController());
 <head>
 	<title></title>
 	<link rel="stylesheet" href="/css/pingpong.css">
+	<meta http-equiv="refresh" content="3;url=pong.php?swing=miss&pingScore=<?=$pingScore?>&pongScore=<?=$pongScore+1?>" />
 </head>
 <body>
 	<h1>Take a Swing, Ping!</h1>
