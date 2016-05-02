@@ -1,8 +1,10 @@
 <?php
 
+require 'functions.php';
+
 function zeroSensor($score) 
 {
-	$score = !isset($_GET[$score]) ? 0 : $_GET[$score];
+	$score = !inputHas($score) ? 0 : inputGet($score);
 	return $score;
 }
 
@@ -42,23 +44,23 @@ extract(pageController());
 </head>
 <body>
 	<h1>Take a Swing, Pong!</h1>
-	<h1>Ping Score: <?=$pingScore?></h1>
-	<h1>Pong Score: <?=$pongScore?></h1>
-	<a class="swing" id='swing1' href="ping.php?swing=hit&pingScore=<?=$pingScore?>&pongScore=<?=$pongScore?>">HIT</a>
-	<a class="swing" id='swing2' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing3' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing4' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing5' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing6' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing7' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing8' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing9' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing10' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing11' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing12' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing13' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing14' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
-	<a class="swing" id='swing15' href="ping.php?swing=miss&pingScore=<?=$pingScore+1?>&pongScore=<?=$pongScore?>">MISS</a>
+	<h1>Ping Score: <?=escape($pingScore)?></h1>
+	<h1>Pong Score: <?=escape($pongScore)?></h1>
+	<a class="swing" id='swing1' href="ping.php?swing=hit&pingScore=<?=escape($pingScore)?>&pongScore=<?=escape($pongScore)?>">HIT</a>
+	<a class="swing" id='swing2' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing3' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing4' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing5' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing6' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing7' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing8' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing9' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing10' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing11' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing12' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing13' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing14' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
+	<a class="swing" id='swing15' href="ping.php?swing=miss&pingScore=<?=escape($pingScore)+1?>&pongScore=<?=escape($pongScore)?>">MISS</a>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
