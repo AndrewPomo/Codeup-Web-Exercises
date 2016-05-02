@@ -1,9 +1,8 @@
 <?php
+require 'functions.php';
 session_start();
 
-
-
-$logged_in_user = isset($_SESSION['logged_in_user']) ? $_SESSION['logged_in_user'] : 0;
+$logged_in_user = inputGet('logged_in_user')
 
 $message = '';
 
