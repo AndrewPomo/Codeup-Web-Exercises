@@ -1,17 +1,8 @@
-<footer id="main-footer">
-		
+<footer class="footer">
 	<div class="container">
-	
 		<div class="row">
-		
 			<div class="col-sm-6 left-col">
-				<h1 class="small-logo">ANDREW POWELL-MORSE<br><span>Person</span></h1>
-				<ul class="footer-nav">
-					<li><a class="scrollto" href="#home">Home</a></li>
-					<li><a class="scrollto" href="#services">Services</a></li>
-					<li><a class="scrollto" href="#portfolio">Portfolio</a></li>
-					<li><a class="scrollto" href="#contact">Contact</a></li>
-				</ul>
+				<h2>Andrew Powell-Morse</h2>
 				<p>&copy;Copyright 2016 / All Rights Reserved</p>
 			</div>
 			
