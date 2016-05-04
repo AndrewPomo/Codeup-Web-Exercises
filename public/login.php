@@ -1,21 +1,16 @@
 <?php
-require 'functions.php';
+require_once '../Auth.php';
+require_once '../Input.php';
 session_start();
 
-$logged_in_user = inputGet('logged_in_user')
-
-$message = '';
+$logged_in_user = Input::get('logged_in_user');
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	$username = $_POST['username'];
 	$password = $_POST['password'];
-	if ($username == "guest" && $password == "password"){
-		$logged_in_user = $username;
-		$_SESSION['logged_in_user'] = $logged_in_user;
+	if(Auth::attempt($username, $password)) {
 		header ('Location: authorized.php');
-		die;
-	} else {
-		$message = 'Login Failed';
+		exit();
 	}
 }
 ?>
@@ -33,6 +28,5 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <input type="password" name="password"><br>
         <input type="submit">
     </form>
-	<p><?=$message?></p>
 </body>
 </html>

@@ -1,8 +1,8 @@
 <?php 
-require 'functions.php';
+require_once '../Auth.php';
+require_once '../Input.php';
 session_start();
-
-$logged_in_user = isset($_SESSION['logged_in_user']) ? $_SESSION['logged_in_user'] : 0;
+$logged_in_user = Input::get('logged_in_user', 0);
 if (!isset($_SESSION['logged_in_user'])) {
 	header ('Location: login.php');
 }
@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <title>POST</title>
 </head>
 <body>
-    <p>Authorized User: <?=escape($logged_in_user)?></p>
+    <p>Authorized User: <?=Auth::user($logged_in_user)?></p>
     <form method="POST">
         <input type="submit" value="Logout" name="Logout">
     </form>
