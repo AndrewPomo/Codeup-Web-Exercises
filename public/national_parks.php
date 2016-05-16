@@ -132,30 +132,31 @@ extract(pageController($dbc));
 			<a class="btn btn-primary pull-right" href="national_parks.php?page=<?=Input::escape($pageNum)-1?>">Previous Page</a>
 		<?php } ?>
 		<h2>Submit a Park!</h2>
+		<p>All fields required.</p>
 		<form method="POST" action="national_parks.php" enctype="multipart/form-data">
 			<fieldset class="form-group">
 		        <label>Name</label>
-		        <input type="text" class="form-control" name="name">
+		        <input type="text" class="form-control" name="name" required>
 	        </fieldset>
 	        <fieldset class="form-group">
 		        <label>Location</label>
-		        <input type="text" class="form-control" name="location">
+		        <input type="text" class="form-control" name="location" required>
 	        </fieldset>
 	        <fieldset class="form-group">
 		        <label>Date Established</label>
-		        <input type="date" class="form-control" name="date_established">
+		        <input type="date" class="form-control" name="date_established" required>
 	        </fieldset>
 	        <fieldset class="form-group">
 		        <label>Area In Acres</label>
-		        <input type="number" class="form-control" name="area_in_acres">
+		        <input type="number" class="form-control" name="area_in_acres" required>
 	        </fieldset>
 	        <fieldset class="form-group">
 		        <label>Description</label>
-		        <input type="text" class="form-control" name="description">
+		        <textarea type="text" class="form-control" name="description" required></textarea>
 	        </fieldset>
 	        <fieldset class="form-group">
 			    <label>Select an image to upload</label>
-			    <input type="file" class="form-control" name="parkImg" id="parkImg">
+			    <input type="file" class="form-control" name="parkImg" id="parkImg" required>
 		    </fieldset>
 		    <button type="submit" class="btn btn-primary">Submit</button>
 	    </form>
