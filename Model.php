@@ -3,12 +3,18 @@
 class Model
 {
 	private $attributes = [];
+	protected static $table = 'bleh';
 
 	// public function __construct($make, $model)
 	// {
 	// 	$this->make = $make;
 	// 	$this->model = $model;
 	// }
+
+	public static function getTableName()
+	{
+		return self::$table;
+	}
 	
 	public function __get($name)
 	{

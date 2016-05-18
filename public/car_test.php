@@ -15,7 +15,7 @@ $yourCar->model = 'Civic';
 $myCar->numberOfScratches = '1,000,000';
 $myCar->dumpData();
 
-$yourCar->numberOfScratches = 1;
+$yourCar->numberOfScratches = '1';
 $yourCar->dumpData();
 
  ?>
