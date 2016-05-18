@@ -3,12 +3,21 @@
 class Log
 
 {
-	public $filename;
-	public $handle;
+	protected $filename;
+	protected $handle;
 	public function logMessage($logLevel, $message)
 	{
 		fwrite($this->handle, date('Y-m-d')." ".date('H:i:s')."[$logLevel] $message\n");
 	}
+
+	protected function setFileName($fileName)
+    {
+        if (!is_string($filename))
+        {
+        	echo "Filename must be a string!";
+        	die();
+    	}
+    }
 
 	public function info($message)
 	{
