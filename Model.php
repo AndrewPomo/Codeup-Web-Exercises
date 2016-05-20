@@ -13,7 +13,7 @@ class Model
 
 	public static function getTableName()
 	{
-		return self::$table;
+		return static::$table;
 	}
 	
 	public function __get($name)

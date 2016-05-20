@@ -25,6 +25,31 @@ class Input
         return self::has($key) ? $_REQUEST[$key] : $default;
     }
 
+    public static function getString($key)
+    {
+        $potentialString = self::get($key);
+
+        if (is_numeric($potentialString)) {
+            throw new Exception("Problem with input '$key.' Please input words instead of a number.");
+        } 
+
+        return $potentialString;
+
+    }
+
+    public static function getNumber($key)
+    {
+        $potentialNum = self::get($key);
+
+        if (!is_numeric($potentialNum)) {
+            throw new Exception("Problem with input '$key.' Please input a number instead of words.");
+        }
+
+        $potentialNum = (int)$potentialNum;
+
+        return $potentialNum;
+    }
+
     public static function escape($input)
     {
     return strip_tags($input);

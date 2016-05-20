@@ -4,6 +4,8 @@ require_once '../Input.php';
 require_once '../park_credentials.php';
 require_once '../db_connect.php';
 
+$errors = [];
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 	$target_dir = "./img/parkImg/";
@@ -18,23 +20,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if($check !== false) {
         $uploadOk = 1;
     } else {
-        echo " File is not an image. ";
         $uploadOk = 0;
     }
     // Check if file already exists
 	if (file_exists($target_file)) {
-	    echo " Sorry, file already exists. ";
 	    $uploadOk = 0;
 	}
 	// Check file size
 	if ($_FILES["parkImg"]["size"] > 500000) {
-	    echo " Sorry, your file is too large. ";
 	    $uploadOk = 0;
 	}
 	// Allow certain file formats
 	if($imageFileType['extension'] != "jpg" && $imageFileType['extension'] != "png" && $imageFileType['extension'] != "jpeg"
 	&& $imageFileType['extension'] != "gif" ) {
-	    echo " Sorry, only JPG, JPEG, PNG & GIF files are allowed. ";
 	    $uploadOk = 0;
 	}
 	// Check if $uploadOk is set to 0 by an error
@@ -50,22 +48,40 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	}
 
 	$stmt = $dbc->prepare('INSERT INTO national_parks (name, img, location, date_established, area_in_acres, description) VALUES (:name, :img, :location, :date_established, :area_in_acres, :description)');
-	// dont forget to add parkImg above eventually.
 	
-    $stmt->bindValue(':name', Input::get('name'), PDO::PARAM_STR);
-    $stmt->bindValue(':img', $filename, PDO::PARAM_STR);
-    $stmt->bindValue(':location', Input::get('location'), PDO::PARAM_STR);
-    $stmt->bindValue(':date_established', Input::get('date_established'), PDO::PARAM_STR);
-    $stmt->bindValue(':area_in_acres', Input::get('area_in_acres'), PDO::PARAM_STR); 
-    $stmt->bindValue(':description', Input::get('description'), PDO::PARAM_STR);
-    $stmt->execute();
-}
+	try {
+    	$stmt->bindValue(':name', Input::getString('name'), PDO::PARAM_STR);
+    	$stmt->bindValue(':location', Input::getString('location'), PDO::PARAM_STR);
+    	$stmt->bindValue(':area_in_acres', Input::getNumber('area_in_acres'), PDO::PARAM_INT); 
+    	$stmt->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
+    	$stmt->bindValue(':date_established', Input::get('date_established'), PDO::PARAM_STR);
+    	$stmt->bindValue(':img', $filename, PDO::PARAM_STR);
+    	$stmt->execute();
+	} catch (Exception $e) {
+		$errors[] = $e->getMessage();
+		echo 'An error occurred with your input: ' . $e->getMessage() . PHP_EOL;
+	}
+	// try {
+ //    	$stmt->bindValue(':location', Input::getString('location'), PDO::PARAM_STR);
+	// } catch (Exception $e) {
+	// 	$errors[] = $e->getMessage();
+	// 	echo 'An error occurred with your Location input: ' . $e->getMessage() . PHP_EOL;
+	// }
+	// try {
+ //    	$stmt->bindValue(':area_in_acres', Input::getNumber('area_in_acres'), PDO::PARAM_INT); 
+	// } catch (Exception $e) {
+	// 	$errors[] = $e->getMessage();
+	// 	echo 'An error occurred with your Park Area input: ' . $e->getMessage() . PHP_EOL;
+	// }
+	// try {
+ //    	$stmt->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
+	// } catch (Exception $e) {
+	// 	$errors[] = $e->getMessage();
+	// 	echo 'An error occurred with your Park Description input: ' . $e->getMessage() . PHP_EOL;
+	// }
 
-// verifyImage();
-// nameImage(); uniqueID()
-// 	// saveImage();
-// 	// makePark();
-// 	// insertPark();
+    
+}
 
 function pageDetect($page) 
 {
@@ -82,6 +98,7 @@ function makeQuery($pageNum, $limit, $dbc)
 	$query = "SELECT * FROM national_parks LIMIT $limit OFFSET $offset";
 	return($query);
 }
+
 function pageController($dbc)
 {
 	$data = [];
@@ -110,6 +127,10 @@ extract(pageController($dbc));
 </head>
 <body>
 	<div class="container">
+	<p><?php if (!empty($errors)){
+			foreach ($errors as $error) ?>
+			<p><?= $error ?></p>
+		<?php } ?>
 		<h1>National Parks in the United States!</h1>
 		<?php 
 		foreach ($parks as $park) { 
