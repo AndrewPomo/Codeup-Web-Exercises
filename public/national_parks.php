@@ -5,81 +5,31 @@ require_once '../park_credentials.php';
 require_once '../db_connect.php';
 
 $errors = [];
+$success = false;
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-
 	$target_dir = "./img/parkImg/";
+	$fileToUpload = "parkImg";
 	$target_file = $target_dir . basename($_FILES["parkImg"]["name"]);
-	$uploadOk = 1;
 	$filename = basename($_FILES["parkImg"]["name"]);
-	$imageFileType = pathinfo($target_file);
+	
 
-
-	// Check if image file is an actual image or fake image
-	$check = getimagesize($_FILES["parkImg"]["tmp_name"]);
-    if($check !== false) {
-        $uploadOk = 1;
-    } else {
-        $uploadOk = 0;
-    }
-    // Check if file already exists
-	if (file_exists($target_file)) {
-	    $uploadOk = 0;
-	}
-	// Check file size
-	if ($_FILES["parkImg"]["size"] > 500000) {
-	    $uploadOk = 0;
-	}
-	// Allow certain file formats
-	if($imageFileType['extension'] != "jpg" && $imageFileType['extension'] != "png" && $imageFileType['extension'] != "jpeg"
-	&& $imageFileType['extension'] != "gif" ) {
-	    $uploadOk = 0;
-	}
-	// Check if $uploadOk is set to 0 by an error
-	if ($uploadOk == 0) {
-	    echo " Sorry, your file was not uploaded.";
-	// if everything is ok, try to upload file
-	} else {
-	    if (move_uploaded_file($_FILES["parkImg"]["tmp_name"], $target_file)) {
-	        echo "The file ". basename( $_FILES["parkImg"]["name"]). " has been uploaded.";
-	    } else {
-	        echo "Sorry, there was an error uploading your file.";
-	    }
-	}
+	
 
 	$stmt = $dbc->prepare('INSERT INTO national_parks (name, img, location, date_established, area_in_acres, description) VALUES (:name, :img, :location, :date_established, :area_in_acres, :description)');
 	
 	try {
-    	$stmt->bindValue(':name', Input::getString('name'), PDO::PARAM_STR);
-    	$stmt->bindValue(':location', Input::getString('location'), PDO::PARAM_STR);
-    	$stmt->bindValue(':area_in_acres', Input::getNumber('area_in_acres'), PDO::PARAM_INT); 
-    	$stmt->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
+    	$stmt->bindValue(':name', Input::getString('name', 0, 50), PDO::PARAM_STR);
+    	$stmt->bindValue(':location', Input::getString('location', 0, 50), PDO::PARAM_STR);
+    	$stmt->bindValue(':area_in_acres', Input::getNumber('area_in_acres', 0, 15), PDO::PARAM_INT); 
+    	$stmt->bindValue(':description', Input::getString('description', 0, 500), PDO::PARAM_STR);
     	$stmt->bindValue(':date_established', Input::get('date_established'), PDO::PARAM_STR);
-    	$stmt->bindValue(':img', $filename, PDO::PARAM_STR);
+    	$stmt->bindValue(':img', Input::getImg($fileToUpload, $target_file, $filename), PDO::PARAM_STR);
     	$stmt->execute();
+    	$success = true;
 	} catch (Exception $e) {
 		$errors[] = $e->getMessage();
-		echo 'An error occurred with your input: ' . $e->getMessage() . PHP_EOL;
 	}
-	// try {
- //    	$stmt->bindValue(':location', Input::getString('location'), PDO::PARAM_STR);
-	// } catch (Exception $e) {
-	// 	$errors[] = $e->getMessage();
-	// 	echo 'An error occurred with your Location input: ' . $e->getMessage() . PHP_EOL;
-	// }
-	// try {
- //    	$stmt->bindValue(':area_in_acres', Input::getNumber('area_in_acres'), PDO::PARAM_INT); 
-	// } catch (Exception $e) {
-	// 	$errors[] = $e->getMessage();
-	// 	echo 'An error occurred with your Park Area input: ' . $e->getMessage() . PHP_EOL;
-	// }
-	// try {
- //    	$stmt->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
-	// } catch (Exception $e) {
-	// 	$errors[] = $e->getMessage();
-	// 	echo 'An error occurred with your Park Description input: ' . $e->getMessage() . PHP_EOL;
-	// }
-
     
 }
 
@@ -157,27 +107,27 @@ extract(pageController($dbc));
 		<form method="POST" action="national_parks.php" enctype="multipart/form-data">
 			<fieldset class="form-group">
 		        <label>Name</label>
-		        <input type="text" class="form-control" name="name" required>
+		        <input type="text" class="form-control" name="name" maxlength="50" value="<?php if (Input::has('name')) echo $_POST['name']; ?>" required>
 	        </fieldset>
 	        <fieldset class="form-group">
 		        <label>Location</label>
-		        <input type="text" class="form-control" name="location" required>
+		        <input type="text" class="form-control" name="location" maxlength="50" value="<?php if (Input::has('location')) echo $_POST['location']; ?>" required>
 	        </fieldset>
 	        <fieldset class="form-group">
 		        <label>Date Established</label>
-		        <input type="date" class="form-control" name="date_established" required>
+		        <input type="date" class="form-control" name="date_established" value="<?php if (Input::has('date_established')) echo $_POST['date_established']; ?>" required>
 	        </fieldset>
 	        <fieldset class="form-group">
 		        <label>Area In Acres</label>
-		        <input type="number" class="form-control" name="area_in_acres" required>
+		        <input type="number" class="form-control" name="area_in_acres" value="<?php if (Input::has('area_in_acres')) echo $_POST['area_in_acres']; ?>" required>
 	        </fieldset>
 	        <fieldset class="form-group">
 		        <label>Description</label>
-		        <textarea type="text" class="form-control" name="description" required></textarea>
+		        <textarea type="text" class="form-control" maxlength="500" name="description" required><?php if (Input::has('description')) echo $_POST['description']; ?></textarea>
 	        </fieldset>
 	        <fieldset class="form-group">
 			    <label>Select an image to upload</label>
-			    <input type="file" class="form-control" name="parkImg" id="parkImg" required>
+			    <input type="file" class="form-control" name="parkImg" id="parkImg" value="<?php if (Input::has('parkImg')) echo $filename; ?>" required>
 		    </fieldset>
 		    <button type="submit" class="btn btn-primary">Submit</button>
 	    </form>
