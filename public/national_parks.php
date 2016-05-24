@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     	$stmt->bindValue(':location', Input::getString('location', 0, 50), PDO::PARAM_STR);
     	$stmt->bindValue(':area_in_acres', Input::getNumber('area_in_acres', 0, 15), PDO::PARAM_INT); 
     	$stmt->bindValue(':description', Input::getString('description', 0, 500), PDO::PARAM_STR);
-    	$stmt->bindValue(':date_established', Input::get('date_established'), PDO::PARAM_STR);
+    	$stmt->bindValue(':date_established', Input::getDate('date_established'), PDO::PARAM_INT);
     	$stmt->bindValue(':img', Input::getImg($fileToUpload, $target_file, $filename), PDO::PARAM_STR);
     	$stmt->execute();
     	$success = true;
@@ -127,7 +127,7 @@ extract(pageController($dbc));
 	        </fieldset>
 	        <fieldset class="form-group">
 			    <label>Select an image to upload</label>
-			    <input type="file" class="form-control" name="parkImg" id="parkImg" value="<?php if (Input::has('parkImg')) echo $filename; ?>" required>
+			    <input type="file" class="form-control" name="parkImg" id="parkImg" required>
 		    </fieldset>
 		    <button type="submit" class="btn btn-primary">Submit</button>
 	    </form>

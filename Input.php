@@ -43,7 +43,7 @@ class Input
         }
 
         if (empty($potentialString)) {
-        	throw new OutOfRangeException("What exactly is an OutOfRangeException?");
+        	throw new OutOfRangeException("You left fields blank. Fill them out and try again!");
         }
 
         if (is_numeric($potentialString)) {
@@ -73,7 +73,7 @@ class Input
         }
 
         if (empty($potentialNum)) {
-        	throw new OutOfRangeException("What exactly is an OutOfRangeException?");
+        	throw new OutOfRangeException("You left fields blank. Fill them out and try again!");
         }
 
         if (!is_numeric($potentialNum)) {
@@ -84,6 +84,27 @@ class Input
 
         return $potentialNum;
     }
+
+	public static function getDate($key)
+	{
+		$potentialDate = self::get($key);
+
+		function validateDate($date, $format = 'Y-m-d H:i:s')
+		{
+		    $d = DateTime::createFromFormat($format, $date);
+		    return $d && $d->format($format) == $date;
+		}
+
+		if (!validateDate($potentialDate, 'Y-m-d'))
+		{
+			echo $potentialDate;
+			throw new Exception("You did not input a valid date.");
+		}
+
+        $d1=new DateTime($potentialDate);
+
+        return $d1;
+	}    
 
     public static function getImg($fileToUpload, $target_file, $filename)
     {
